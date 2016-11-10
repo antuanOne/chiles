@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+  <session-factory>
+    <!-- Database connection settings -->
+    <property name="connection.driver_class">com.microsoft.sqlserver.jdbc.SQLServerDriver</property>
+    <property name="connection.url">jdbc:sqlserver://127.0.0.1:1433;DatabaseName=laMayor</property>
+    <property name="connection.username">chiles</property>
+    <property name="connection.password">chiles</property>
+    <property name="connection.pool_size">3</property>
+    <property name="dialect">org.hibernate.dialect.SQLServer2008Dialect</property>
+    <property name="cache.provider_class">org.hibernate.cache.NoCacheProvider</property>
+    <property name="show_sql">true</property>
+    <!--<property name="hbm2ddl.auto">create</property>-->
+    <!--<mapping class="org.hibernate.tutorial.annotations.Event"/>-->
+    <mapping class="com.pojos.Almacen"/>
+    <mapping class="com.pojos.Proveedor"/>
+    <mapping class="com.pojos.Direccion"/>
+    <mapping class="com.pojos.Contacto"/>
+    <mapping class="com.pojos.Producto"/>
+    <mapping class="com.pojos.MasterCompra"/>
+    <mapping class="com.pojos.DetalleCompra"/>
+    <mapping class="com.pojos.ConceptosExtra"/>
+    
+    
+  </session-factory>
+</hibernate-configuration>

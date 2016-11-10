@@ -1,0 +1,88 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/templates/template.xhtml">
+    <ui:define name="title"><h:outputText value="Proveedores"/></ui:define>
+    <ui:define name="content">
+        <p:outputPanel autoUpdate="true">
+            <strong><h:outputText value="Proveedores"/></strong>
+            <p:separator style="background-color: #F00;border-color:#F00;"/>
+            <p:toolbar id="tool">
+                <p:toolbarGroup align="left">  
+                    <p:commandButton value="Nuevo" action="#{ProveedorBean.nuevo}" image="ui-icon-document"/>    
+                    <p:commandButton value="Guardar" action="#{ProveedorBean.guardar}" image="ui-icon ui-icon-disk"/>  
+                    <p:commandButton value="Eliminar" action="#{ProveedorBean.eliminar}" image="ui-icon ui-icon-close"/>
+                </p:toolbarGroup>  
+                <p:toolbarGroup align="right">  
+                    <p:commandButton value="Salir" action="#{datosHeaderBean.inicio}" image="ui-icon-arrowthickstop-1-e"/>
+                </p:toolbarGroup>
+            </p:toolbar>
+            <table width="100%" border="0">
+                <tr>
+                    <td>
+                        <div class="ui-widget-content ui-corner-bottom ui-helper-clearfix ui-shadow">
+                            <p:dataTable id="tabla" var="prov" value="#{ProveedorBean.listProveedores}"
+                                         selection="#{ProveedorBean.proveedorGral}"
+                                         rowKey="#{prov.idProveedor}" emptyMessage="No se encontraron registros"
+                                         selectionMode="single" scrollable="true" scrollHeight="150">
+                                <p:ajax event="rowSelect" listener="#{ProveedorBean.onRowSelect}"/>  
+                                <p:column headerText="ID" width="25">  
+                                    <h:outputText value="#{prov.idProveedor}" />  
+                                </p:column>  
+                                <p:column headerText="Nombre" width="125">  
+                                    <h:outputText value="#{prov.nombre}" />  
+                                </p:column>  
+                                <p:column headerText="Dirección" width="175">  
+                                    <h:outputText value="#{prov.direccion}" />  
+                                </p:column>  
+                            </p:dataTable>  
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="left" valign="top">
+                        <div class="ui-widget-content ui-corner-bottom ui-helper-clearfix ui-shadow">
+                            <p:panel id="panel" style="border: 0">
+                                <fieldset style="height:140px">
+                                    <legend>Información del proveedor.</legend>
+                                    <table>
+                                        <tr>
+                                            <td><h:outputText value="Nombre"/><br/>
+                                                <p:inputText value="#{ProveedorBean.proveedor.nombre}"/>
+                                            </td>
+                                            <td><h:outputText value="Nombre proveedor"/><br/>
+                                                <p:inputText value="#{ProveedorBean.proveedor.nombreProveedor}"/>
+                                            </td>
+                                            <td>                  
+                                                <h:outputText value="Direccion"/><br/>
+                                            </td>
+                                            <td>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>
+                                                <h:outputText value="Contacto"/><br/>
+                                                <p:inputText value="#{ProveedorBean.proveedor.contacto.contacto}"/>
+                                            </td>
+                                            <td>
+                                                <h:outputText value="Telefono"/><br/>
+                                                <p:inputText value="#{ProveedorBean.proveedor.contacto.telefono}"/>
+                                            </td>
+                                            <td>
+                                                <h:outputText value="E-mail"/><br/>
+                                                <p:inputText value="#{ProveedorBean.proveedor.contacto.email}"/>
+                                            </td>                                            
+                                        </tr>
+                                    </table>
+                                </fieldset>
+                            </p:panel>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </p:outputPanel>
+    </ui:define>
+</ui:composition>
