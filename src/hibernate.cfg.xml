@@ -21,7 +21,7 @@
     <mapping class="com.pojos.MasterCompra"/>
     <mapping class="com.pojos.DetalleCompra"/>
     <mapping class="com.pojos.ConceptosExtra"/>
-    
+    <mapping class="com.pojos.InventoryMaster"/>
     
   </session-factory>
 </hibernate-configuration>

@@ -1,0 +1,125 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/templates/template.xhtml">
+    <ui:define name="title"><h:outputText value="Compras"/></ui:define>
+    <ui:define name="content">
+        <p:outputPanel autoUpdate="true">
+            <strong><h:outputText value="Compras"/></strong>
+            <p:separator style="background-color: #F00;border-color:#F00;"/>
+            <p:toolbar id="tool">
+                <p:toolbarGroup align="left">  
+                    <p:commandButton value="Nueva compra" image="ui-icon-document"/>    
+                    <p:commandButton value="Registra compra" action="#{HistorialComprasBean.guardarCompra}" image="ui-icon ui-icon-disk"/>  
+                </p:toolbarGroup>  
+                <p:toolbarGroup align="right">
+                    <p:commandButton value="Salir" action="#{datosHeaderBean.inicio}" image="ui-icon-arrowthickstop-1-e"/>
+                </p:toolbarGroup>
+            </p:toolbar>
+            <p:outputPanel id="panel">
+                <table width="900" border="0">
+                    <tr>
+                        <td width="211"></td>
+                        <td width="118"></td>
+                        <td width="244"></td>
+                        <td width="144"></td>
+                        <td width="94"></td>
+                    </tr>
+                    <tr>
+                        <td colspan="5">
+                            <fieldset>
+                                <table border="0">
+                                    <tr >
+                                        <td colspan="2">
+                                        </td>
+                                        <td width="144"></td>
+                                        <td width="144"></td>
+                                        <td width="194"></td>
+                                    </tr>
+                                    <tr>
+                                        <td width="211" colspan="2"><strong><h:outputText value="Almacén"/></strong><br/>
+                                            <p:selectOneMenu value="#{HistorialComprasBean.objBusqueda.almacen}" style="width: 250px">
+                                                <f:selectItem itemLabel="Seleccione un almacen" itemValue="0" />
+                                                <f:selectItems value="#{HistorialComprasBean.listaAlmacen}" var="al" itemValue="#{al.idAlmacen}" itemLabel="#{al.nombreAlmacen}"/>  
+                                                <p:ajax event="change" listener="#{HistorialComprasBean.seleccionaAlmacen}"/>
+                                            </p:selectOneMenu>
+                                        </td>
+                                        <td width="118" colspan="3" rowspan="2">
+
+
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <strong><h:outputText value="Fecha Inicio"/></strong>
+                                        </td>
+                                        <td>
+                                            <p:calendar id="f1" value="#{HistorialComprasBean.objBusqueda.fecha1}" pattern="dd/MM/yyyy"
+                                                        maxdate="#{HistorialComprasBean.objBusqueda.fecha2}">
+                                                <p:ajax event="dateSelect" listener="#{HistorialComprasBean.fecha1Select}"/>
+                                            </p:calendar>
+                                            <p:watermark for="f1" value="dd/mm/yyyy"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <strong> <h:outputText value="Fecha Fin"/></strong>
+                                        </td>
+                                        <td>
+                                            <p:calendar id="f2" value="#{HistorialComprasBean.objBusqueda.fecha2}" pattern="dd/MM/yyyy"
+                                                        mindate="#{HistorialComprasBean.objBusqueda.fecha1}">
+                                                <p:ajax event="dateSelect" listener="#{HistorialComprasBean.fecha2Select}"/>
+                                            </p:calendar>
+                                            <p:watermark for="f2" value="dd/mm/yyyy"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2">
+                                            <p:commandButton value="Buscar" action="#{HistorialComprasBean.buscar}"/>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </fieldset>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="5">
+                            <fieldset>
+                                <p:dataTable id="detalle" var="prod" value="#{HistorialComprasBean.listCompra}"
+                                             emptyMessage="No se han agregado productos"
+                                             scrollable="true" scrollHeight="200" >
+                                    <p:column headerText="ID" width="75">
+                                        <h:outputText value="#{prod.idCompra}" />
+                                    </p:column>
+                                    <p:column headerText="Almcén" width="175">
+                                        <h:outputText value="#{prod.almacen.nombreAlmacen}"/>
+                                    </p:column>
+                                    <p:column headerText="Fecha" width="175">
+                                        <h:outputText value="#{prod.fechaAlta}"/>
+                                    </p:column>
+                                    <p:column headerText="Estatus" width="175">
+                                        <h:outputText value="#{prod.estatus}"/>
+                                    </p:column>
+                                    <p:column width="50">
+                                        <p:outputPanel>
+                                            <p:commandButton action="#{HistorialComprasBean.verCompra}" title="Borrar"
+                                                             image="ui-icon-search">
+                                                <f:setPropertyActionListener target="#{HistorialComprasBean.compra}" value="#{prod}" />
+                                            </p:commandButton>
+                                        </p:outputPanel>
+                                    </p:column>
+                                </p:dataTable>
+
+                            </fieldset>
+                        </td>
+                    </tr>
+                </table>
+
+            </p:outputPanel>
+
+        </p:outputPanel>
+
+    </ui:define>
+</ui:composition>

@@ -100,9 +100,10 @@
                                     <tr>
                                         <td colspan="2"><strong><h:outputText value="Proveedor"/></strong><br/>
                                             <p:selectOneMenu value="#{ComprasBean.compra.proveedor.idProveedor}" style="width: 250px"
+                                                             filter="true" filterMatchMode="contains"
                                                              valueChangeListener="#{ComprasBean.seleccionaProveedor}">
                                                 <f:selectItem itemLabel="Seleccione un proveedor" itemValue="0" />
-                                                <f:selectItems value="#{ComprasBean.listProveedores}" var="provee" itemValue="#{provee.idProveedor}" itemLabel="#{provee.nombre}"/>  
+                                                <f:selectItems value="#{ComprasBean.listProveedores}" var="provee" itemValue="#{provee.idProveedor}" itemLabel="#{provee.nombre} - #{provee.nombreProveedor}"/>
                                                 <p:ajax event="change"/>
                                             </p:selectOneMenu> 
                                         </td>
@@ -159,7 +160,8 @@
                                         </td>
                                         <td>
                                             <strong><h:outputText value="Producto"/></strong><br/>
-                                            <p:selectOneMenu id="Producto" value="#{ComprasBean.id_producto}" 
+                                            <p:selectOneMenu id="Producto" value="#{ComprasBean.id_producto}"
+                                                             filter="true" filterMatchMode="contains"
                                                              valueChangeListener="#{ComprasBean.seleccionaProducto}" style="width: 250px">
                                                 <f:selectItem itemLabel="Seleccione un producto" itemValue="0" />
                                                 <f:selectItems value="#{ComprasBean.listaProductos}" var="p" itemValue="#{p.idProducto}" itemLabel="#{p.descripcion}"/>  
