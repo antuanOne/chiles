@@ -1,0 +1,25 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/templates/template.xhtml">
+    <ui:define name="title"><h:outputText value="Compras"/></ui:define>
+    <ui:define name="content">
+        <p:outputPanel autoUpdate="true">
+            <strong><h:outputText value="Compras"/></strong>
+            <p:separator style="background-color: #F00;border-color:#F00;"/>
+            <p:toolbar id="tool">
+                <p:toolbarGroup align="left">
+                    <p:commandButton value="Nueva compra" image="ui-icon-document"/>
+                    <p:commandButton value="Registra compra" action="#{ComprasBean.guardarCompra}" image="ui-icon ui-icon-disk"/>
+                </p:toolbarGroup>
+                <p:toolbarGroup align="right">
+                    <p:commandButton value="Regresar" action="#{ComprasBean.regresar}" image="ui-icon-arrowreturnthick-1-w"/>
+                    <p:commandButton value="Salir" action="#{datosHeaderBean.inicio}" image="ui-icon-arrowthickstop-1-e"/>
+                </p:toolbarGroup>
+            </p:toolbar>
+        </p:outputPanel>
+
+    </ui:define>
+</ui:composition>

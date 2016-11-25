@@ -15,13 +15,15 @@
     <!--<mapping class="org.hibernate.tutorial.annotations.Event"/>-->
     <mapping class="com.pojos.Almacen"/>
     <mapping class="com.pojos.Proveedor"/>
-    <mapping class="com.pojos.Direccion"/>
+    <mapping class="com.pojos.DireccionProveedor"/>
     <mapping class="com.pojos.Contacto"/>
     <mapping class="com.pojos.Producto"/>
     <mapping class="com.pojos.MasterCompra"/>
     <mapping class="com.pojos.DetalleCompra"/>
     <mapping class="com.pojos.ConceptosExtra"/>
     <mapping class="com.pojos.InventoryMaster"/>
+    <mapping class="com.pojos.Cliente"/>
+    <mapping class="com.pojos.DireccionCliente"/>
     
   </session-factory>
 </hibernate-configuration>

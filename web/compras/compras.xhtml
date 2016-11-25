@@ -41,9 +41,9 @@
                                     </tr>
                                     <tr>
                                         <td width="211" colspan="2"><strong><h:outputText value="Almacén"/></strong><br/>
-                                            <p:selectOneMenu value="#{ComprasBean.compra.almacen.idAlmacen}" style="width: 250px"> 
+                                            <p:selectOneMenu value="#{ComprasBean.compra.almacen.idAlmacen}" style="width: 250px">
                                                 <f:selectItem itemLabel="Seleccione un almacen" itemValue="0" />
-                                                <f:selectItems value="#{ComprasBean.listaAlmacen}" var="al" itemValue="#{al.idAlmacen}" itemLabel="#{al.nombreAlmacen}"/>  
+                                                <f:selectItems value="#{ComprasBean.listaAlmacen}" var="al" itemValue="#{al.idAlmacen}" itemLabel="#{al.nombreAlmacen}"/>
                                                 <p:ajax event="change" listener="#{ComprasBean.seleccionaAlmacen}"/>
                                             </p:selectOneMenu>
                                         </td>
@@ -105,7 +105,7 @@
                                                 <f:selectItem itemLabel="Seleccione un proveedor" itemValue="0" />
                                                 <f:selectItems value="#{ComprasBean.listProveedores}" var="provee" itemValue="#{provee.idProveedor}" itemLabel="#{provee.nombre} - #{provee.nombreProveedor}"/>
                                                 <p:ajax event="change"/>
-                                            </p:selectOneMenu> 
+                                            </p:selectOneMenu>
                                         </td>
                                     </tr>
                                     <tr>
@@ -164,9 +164,9 @@
                                                              filter="true" filterMatchMode="contains"
                                                              valueChangeListener="#{ComprasBean.seleccionaProducto}" style="width: 250px">
                                                 <f:selectItem itemLabel="Seleccione un producto" itemValue="0" />
-                                                <f:selectItems value="#{ComprasBean.listaProductos}" var="p" itemValue="#{p.idProducto}" itemLabel="#{p.descripcion}"/>  
+                                                <f:selectItems value="#{ComprasBean.listaProductos}" var="p" itemValue="#{p.idProducto}" itemLabel="#{p.descripcion}"/>
                                                 <p:ajax event="change"/>
-                                            </p:selectOneMenu> 
+                                            </p:selectOneMenu>
                                         </td>
                                         <td><strong><h:outputText value="Cantidad"/></strong><br/>
                                             <h:inputText id="cantidad" value="#{ComprasBean.cantidad}" size="6" maxlength="6"
@@ -199,31 +199,31 @@
                             <fieldset>
                                 <p:dataTable id="detalle" var="prod" value="#{ComprasBean.compra.listDetalle}"
                                              emptyMessage="No se han agregado productos"
-                                             scrollable="true" scrollHeight="200" >  
-                                    <p:column headerText="ID" width="75"> 
-                                        <h:outputText value="#{prod.producto.idProducto}" />  
-                                    </p:column>  
-                                    <p:column headerText="Descripción" width="275">   
-                                        <h:outputText value="#{prod.producto.descripcion}" />  
-                                    </p:column>   
-                                    <p:column headerText="Precio unitario" width="75"> 
-                                        <h:outputText value="#{prod.precio}" />  
-                                    </p:column>  
-                                    <p:column headerText="Cantidad" width="75"> 
-                                        <h:outputText value="#{prod.cantidad}" />  
-                                    </p:column>  
-                                    <p:column headerText="Subtotal" width="75"> 
-                                        <h:outputText value="#{prod.subtotal}" />  
-                                    </p:column>  
-                                    <p:column width="50">  
+                                             scrollable="true" scrollHeight="200" >
+                                    <p:column headerText="ID" width="75">
+                                        <h:outputText value="#{prod.producto.idProducto}" />
+                                    </p:column>
+                                    <p:column headerText="Descripción" width="275">
+                                        <h:outputText value="#{prod.producto.descripcion}" />
+                                    </p:column>
+                                    <p:column headerText="Precio unitario" width="75">
+                                        <h:outputText value="#{prod.precio}" />
+                                    </p:column>
+                                    <p:column headerText="Cantidad" width="75">
+                                        <h:outputText value="#{prod.cantidad}" />
+                                    </p:column>
+                                    <p:column headerText="Subtotal" width="75">
+                                        <h:outputText value="#{prod.subtotal}" />
+                                    </p:column>
+                                    <p:column width="50">
                                         <p:outputPanel>
-                                            <p:commandButton action="#{ComprasBean.borrarRenglon}" title="Borrar"                                                                      
+                                            <p:commandButton action="#{ComprasBean.borrarRenglon}" title="Borrar"
                                                              image="ui-icon-trash">
                                                 <f:setPropertyActionListener target="#{ComprasBean.prodABorrar}" value="#{prod}" />
                                             </p:commandButton>
                                         </p:outputPanel>
-                                    </p:column> 
-                                </p:dataTable>  
+                                    </p:column>
+                                </p:dataTable>
 
                             </fieldset>
                         </td>
@@ -242,25 +242,25 @@
                             <fieldset>
                                 <p:dataTable id="detalleExtra" var="extra" value="#{ComprasBean.compra.listaExtra}"
                                              emptyMessage=""
-                                             scrollable="true" scrollHeight="50" > 
-                                    <p:column headerText="monto" width="75"> 
-                                        <h:outputText value="#{index + 1}" />  
-                                    </p:column> 
-                                    <p:column headerText="ID" width="275"> 
-                                        <h:outputText value="#{extra.concepto}" />  
-                                    </p:column> 
-                                    <p:column headerText="monto" width="75"> 
-                                        <h:outputText value="#{extra.precio}" />  
-                                    </p:column>  
-                                    <p:column width="50"> 
+                                             scrollable="true" scrollHeight="50" >
+                                    <p:column headerText="monto" width="75">
+                                        <h:outputText value="#{index + 1}" />
+                                    </p:column>
+                                    <p:column headerText="ID" width="275">
+                                        <h:outputText value="#{extra.concepto}" />
+                                    </p:column>
+                                    <p:column headerText="monto" width="75">
+                                        <h:outputText value="#{extra.precio}" />
+                                    </p:column>
+                                    <p:column width="50">
                                         <p:outputPanel>
-                                            <p:commandButton action="#{ComprasBean.borrarConceptoExtra}" title="Borrar"                                                                      
+                                            <p:commandButton action="#{ComprasBean.borrarConceptoExtra}" title="Borrar"
                                                              image="ui-icon-trash">
                                                 <f:setPropertyActionListener target="#{ComprasBean.indexConceptoExtra}" value="#{index}" />
                                             </p:commandButton>
                                         </p:outputPanel>
-                                    </p:column> 
-                                </p:dataTable>  
+                                    </p:column>
+                                </p:dataTable>
 
                             </fieldset>
                         </td>
@@ -301,7 +301,7 @@
                             <h:inputText id="monto" value="#{ComprasBean.conceptoExtra.precio}" />
                         </td>
                         <td>
-                            <p:commandButton value="Agregar extra" action="#{ComprasBean.agregaExtra}" image="ui-icon ui-icon-disk"/>  
+                            <p:commandButton value="Agregar extra" action="#{ComprasBean.agregaExtra}" image="ui-icon ui-icon-disk"/>
                         </td>
                     </tr>
                 </table>

@@ -26,14 +26,14 @@ public class Proveedor implements Serializable {
     private String nombreProveedor;
     @OneToOne
     @JoinColumn(name = "ID_DIRECCION_PROVEEDOR")
-    private Direccion direccion;
+    private DireccionProveedor direccion;
     @OneToOne
     @JoinColumn(name = "ID_PROVEEDOR_CONTACTO")
     private Contacto contacto;
 
     public Proveedor() {
         this.idProveedor = 0;
-        direccion = new Direccion();
+        direccion = new DireccionProveedor();
         contacto = new Contacto();
     }
 
@@ -106,14 +106,14 @@ public class Proveedor implements Serializable {
     /**
      * @return the direccion
      */
-    public Direccion getDireccion() {
+    public DireccionProveedor getDireccion() {
         return direccion;
     }
 
     /**
      * @param direccion the direccion to set
      */
-    public void setDireccion(Direccion direccion) {
+    public void setDireccion(DireccionProveedor direccion) {
         this.direccion = direccion;
     }
 
