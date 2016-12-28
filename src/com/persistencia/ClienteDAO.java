@@ -16,6 +16,13 @@ public class ClienteDAO {
         SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
         Session session = sessionFactory.openSession();
         List<Cliente> lista = session.createCriteria(Cliente.class).list();
-        return null;
+        return lista;
+    }
+
+    public Cliente getCliente(int idCliente){
+        SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+        Session session = sessionFactory.openSession();
+        Cliente cliente = (Cliente) session.get(Cliente.class, idCliente);
+        return cliente;
     }
 }

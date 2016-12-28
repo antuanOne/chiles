@@ -14,6 +14,7 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
@@ -22,7 +23,7 @@ import java.util.logging.Logger;
 /**
  * @author Usuario
  */
-public class ComprasDAO {
+public class ComprasDAO implements Serializable{
     public MasterCompra getCompraById(Long id) throws Exception {
         SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
         Session session = sessionFactory.openSession();
