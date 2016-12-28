@@ -1,17 +1,12 @@
 package com.controller.ventas;
 
 import com.app.GenericBean;
-import com.persistencia.AlmacenDAO;
-import com.persistencia.ClienteDAO;
-import com.persistencia.InventarioDAO;
-import com.persistencia.ProductoDAO;
-import com.pojos.Almacen;
-import com.pojos.Cliente;
-import com.pojos.MasterVenta;
-import com.pojos.Producto;
+import com.persistencia.*;
+import com.pojos.*;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
 import javax.faces.event.ValueChangeEvent;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -34,14 +29,20 @@ public class VentasBean  extends GenericBean implements Serializable {
     private int existencia;
     private float iva = 0.16f;
     private float precio;
+    private DetalleVenta prodABorrar;
 
     private final String msgHeader= "Ventas";
-    private ClienteDAO clienteDAO = new ClienteDAO();
-    private ProductoDAO productoDAO = new ProductoDAO();
-    private AlmacenDAO almacenDAO = new AlmacenDAO();
-    private InventarioDAO inventarioDAO = new InventarioDAO();
+    private final ClienteDAO clienteDAO = new ClienteDAO();
+    private final ProductoDAO productoDAO = new ProductoDAO();
+    private final AlmacenDAO almacenDAO = new AlmacenDAO();
+    private final InventarioDAO inventarioDAO = new InventarioDAO();
+    private final VentasDAO ventasDAO = new VentasDAO();
 
     public VentasBean() {
+        nuevo();
+    }
+
+    final public void nuevo(){
         venta = new MasterVenta();
         try {
             setClienteList(clienteDAO.getClientes());
@@ -50,6 +51,11 @@ public class VentasBean  extends GenericBean implements Serializable {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        precio = 0;
+        cantidad = 0;
+        iva = 0;
+        id_producto = 0L;
+        venta.calculaTotales();
     }
 
     public void seleccionaAlmacen() {
@@ -83,6 +89,28 @@ public class VentasBean  extends GenericBean implements Serializable {
             showInfoMessage(msgHeader, "Porfavor NO deje la cantidad en ceros");
             return;
         }
+
+        DetalleVenta detalleVenta= new DetalleVenta();
+        detalleVenta.setProducto(productoBusqueda);
+
+        boolean prodPresente = venta.getListaDetalle().contains(detalleVenta);
+        if (!prodPresente) {
+            detalleVenta.setPrecio(precio);
+            detalleVenta.setCantidad(cantidad);
+            detalleVenta.setIva(iva);
+            venta.getListaDetalle().add(detalleVenta);
+        } else {
+            detalleVenta = venta.getListaDetalle().get(venta.getListaDetalle().indexOf(detalleVenta));
+            detalleVenta.setPrecio(precio);
+            cantidad = cantidad + detalleVenta.getCantidad();
+            detalleVenta.setCantidad(cantidad);
+            detalleVenta.setIva(iva);
+        }
+
+        codigo = "";
+        venta.calculaTotales();
+        cantidad = 0;
+        precio = 0;
     }
 
     public void seleccionaProducto(ValueChangeEvent e) {
@@ -98,6 +126,21 @@ public class VentasBean  extends GenericBean implements Serializable {
             productoBusqueda = productoDAO.getProductoById(id_producto);
             existencia = inventarioDAO.getExistenciaProducto(venta.getAlmacen().getIdAlmacen(),id_producto);
             codigo = productoBusqueda.getCodigo();
+        } catch (Exception ex) {
+            Logger.getLogger(VentasBean.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public void borrarRenglon() {
+        venta.getListaDetalle().remove(prodABorrar);
+        venta.calculaTotales();
+    }
+
+    public void guardarVenta(){
+        try {
+            venta = ventasDAO.insertMasterVenta(venta);
+            FacesContext.getCurrentInstance().getExternalContext().redirect("../ventas/ventasDetalle.xhtml?id=" + venta.getIdVenta());
+
         } catch (Exception ex) {
             Logger.getLogger(VentasBean.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -182,5 +225,13 @@ public class VentasBean  extends GenericBean implements Serializable {
 
     public void setExistencia(int existencia) {
         this.existencia = existencia;
+    }
+
+    public DetalleVenta getProdABorrar() {
+        return prodABorrar;
+    }
+
+    public void setProdABorrar(DetalleVenta prodABorrar) {
+        this.prodABorrar = prodABorrar;
     }
 }
