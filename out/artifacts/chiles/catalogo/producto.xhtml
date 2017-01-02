@@ -1,0 +1,77 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/templates/template.xhtml">
+    <ui:define name="title"><h:outputText value="Productos"/></ui:define>
+    <ui:define name="content">
+        <p:outputPanel autoUpdate="true">
+            <strong><h:outputText value="Productos"/></strong>
+            <p:separator style="background-color: #F00;border-color:#F00;"/>
+            <p:toolbar id="tool">
+                <p:toolbarGroup align="left">  
+                    <p:commandButton value="Nuevo" action="#{ProductoBean.nuevo}" image="ui-icon-document"/>    
+                    <p:commandButton value="Guardar" action="#{ProductoBean.guardar}" image="ui-icon ui-icon-disk"/>  
+                    <p:commandButton value="Eliminar" action="#{ProductoBean.eliminar}" image="ui-icon ui-icon-close"/>
+                </p:toolbarGroup>  
+                <p:toolbarGroup align="right">  
+                    <p:commandButton value="Salir" action="#{datosHeaderBean.inicio}" image="ui-icon-arrowthickstop-1-e"/>
+                </p:toolbarGroup>
+            </p:toolbar>
+            <table width="100%" border="0">
+                <tr>
+                    <td>
+                        <div class="ui-widget-content ui-corner-bottom ui-helper-clearfix ui-shadow">
+                            <p:dataTable id="tabla" var="prov" value="#{ProductoBean.listProductos}"
+                                         selection="#{ProductoBean.productorGral}"
+                                         rowKey="#{prov.idProducto}" emptyMessage="No se encontraron registros"
+                                         selectionMode="single" scrollable="true" scrollHeight="150">
+                                <p:ajax event="rowSelect" listener="#{ProductoBean.onRowSelect}"/>  
+                                <p:column headerText="ID" width="25">  
+                                    <h:outputText value="#{prov.idProducto}" />  
+                                </p:column>  
+                                <p:column headerText="Codigo" width="125">  
+                                    <h:outputText value="#{prov.codigo}" />  
+                                </p:column>  
+                                <p:column headerText="Descripcion" width="175">  
+                                    <h:outputText value="#{prov.descripcion}" />  
+                                </p:column>  
+                                <p:column headerText="Precio" width="175">  
+                                    <h:outputText value="#{prov.precio}" />  
+                                </p:column>  
+                            </p:dataTable>  
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="left" valign="top">
+                        <div class="ui-widget-content ui-corner-bottom ui-helper-clearfix ui-shadow">
+                            <p:panel id="panel" style="border: 0">
+                                <fieldset style="height:140px">
+                                    <legend>Información del producto.</legend>
+                                    <table>
+                                        <tr>
+                                            <td><h:outputText value="codigo"/><br/>
+                                                <p:inputText value="#{ProductoBean.producto.codigo}"/>
+                                            </td>
+                                            <td><h:outputText value="Nombre"/><br/>
+                                                <p:inputText value="#{ProductoBean.producto.descripcion}"/>
+                                            </td>
+                                            <td>                  
+                                                <h:outputText value="precio"/><br/>
+                                                <p:inputText value="#{ProductoBean.producto.precio}"/>
+                                            </td>
+                                            <td>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </fieldset>
+                            </p:panel>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </p:outputPanel>
+    </ui:define>
+</ui:composition>

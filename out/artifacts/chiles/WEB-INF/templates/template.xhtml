@@ -1,0 +1,125 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui" style="height: 97%">
+
+    <f:view contentType="text/html" >
+        <h:head>
+            <f:facet name="first">
+                <meta http-equiv="X-UA-Compatible" content="EmulateIE8" />
+                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+                <link type="image/x-icon" href="../favicon.ico" rel="icon" />
+                <link type="image/x-icon" href="../favicon.ico" rel="shortcut icon" />
+                <title><ui:insert name="title" /></title>
+            </f:facet>
+            <style type="text/css">
+                .ui-widget,.ui-widget .ui-widget {
+                    font-size: 92% !important;
+                }
+
+                .outputText {
+                    font-style: italic;
+                    font-weight: bold;
+                }
+                /*
+                Se implemento en ventas pero como no me gusto no lo deje pero se queda para futura referencia
+                                #content{
+                                    text-align:center;
+                                    margin:0 auto;
+                                }
+                                #contenedor{
+                                    margin: 0 auto;
+                                    text-align:left;
+                                    width:70%;
+                                }*/
+            </style>
+            <script type="text/javascript">
+                function changeFocus(foc) {
+                    var x = document.getElementById(foc);
+                    x.focus();
+                }
+            </script>
+        </h:head>
+        <h:body style="height: 100%;background-color: #292E37">
+            <p:ajaxStatus onstart="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" />
+            <p:dialog modal="true" widgetVar="statusDialog" header="Procesando" width="200"
+                      draggable="false" closable="false">  
+                <h:outputText value="Espere"/>
+                <h:graphicImage value="../image/ajax-loader.gif"/> 
+
+            </p:dialog>
+            <h:form id="form" style="height: 100%" onkeypress="return event.keyCode !== 13">
+                <p:outputPanel autoUpdate="true" style="height: 100%">
+                    <p:growl id="growl" showDetail="true" />
+                    <table border="0" style="width: 100%;height: 100%;border-radius: 9px">
+                        <tr style="height: 80px">
+                            <td style="width: 180px;border-radius: 9px;background-color: white" align="center">
+
+
+                                <img src="/image/redChilli.jpg" alt="Logo" width="60" height="60"/>
+                            </td>
+                            <td style="border-radius: 9px">
+                                <table border="0" style="width: 100%">
+                                    <tr>
+                                        <td>
+                                            <strong><h:outputText value="Sistema de Control" style="color:#FFF;font-size: 25px"/></strong><br/>
+                                    <h:outputText value="Chiles selectos La Mayor" style="color:#FFF;font-size: 15px" />
+                            </td>
+                            <td style="width: 80px">
+                                <table>
+                                    <tr>
+                                        <td>
+                                    <p:commandButton  icon="ui-icon-home" title="Home" />
+                            </td>
+                            <td>
+                        <p:commandButton icon="ui-icon-gear" title="Settings" />
+                        </td>
+                        <td>
+                        <p:commandButton value="Salir" />
+                        </td>
+                        </tr>
+                    </table>
+                    </td>
+                    </tr>
+                    <tr>
+                        <td><p:outputLabel id="usuario" value="Prueba" style="color:#FFF;font-size: 18px"/></td>
+                    <td></td>
+                    </tr>
+                    </table>
+                    </td>
+                    </tr>
+                    <tr style="height: 9px;border-radius: 9px">
+                        <td colspan="2" style="border-radius: 9px;background-color: #cc0000" ></td>
+                    </tr>
+                    <tr>
+                        <td valign="top" style="border-radius: 9px">
+                    <p:panelMenu style="width:200px">
+                        <p:submenu label="Catalogos">
+                             <p:menuitem value="Almacen" url="/catalogo/almacen.xhtml" icon="ui-icon-home" />
+                             <p:menuitem value="Proveedores" url="/catalogo/proveedor.xhtml" icon="ui-icon-home" />
+                             <p:menuitem value="Producto" url="/catalogo/producto.xhtml" icon="ui-icon-tag" />
+                        </p:submenu>
+                        <p:submenu label="Compras">
+                             <p:menuitem value="Compras" url="/compras/compras.xhtml" icon="ui-icon-cart" />
+                            <p:menuitem value="Historial Compras" url="/compras/historialCompras.xhtml" icon="ui-icon-cart" />
+                        </p:submenu>
+                        <p:submenu label="Ventas">
+                            <p:menuitem value="Ventas" url="/ventas/ventas.xhtml" icon="ui-icon-cart" />
+                            <p:menuitem value="Historial Ventas" url="/ventas/historialVentas.xhtml" icon="ui-icon-cart" />
+                        </p:submenu>
+                    </p:panelMenu>
+                    </td>
+                    <td valign="top" style="border-radius: 9px;background-color: white">
+                    <ui:insert name="content"></ui:insert>
+                    </td>
+                    </tr>
+                    </table>
+                </p:outputPanel>
+            </h:form>
+
+        </h:body>
+
+    </f:view>
+</html>

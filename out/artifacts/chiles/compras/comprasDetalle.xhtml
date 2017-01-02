@@ -1,0 +1,213 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/templates/template.xhtml">
+    <ui:define name="title"><h:outputText value="Compras"/></ui:define>
+    <ui:define name="content">
+        <p:outputPanel autoUpdate="true">
+            <strong><h:outputText value="Compras"/></strong>
+            <p:separator style="background-color: #F00;border-color:#F00;"/>
+            <p:toolbar id="tool">
+                <p:toolbarGroup align="left">
+                    <p:commandButton value="Nueva compra" action="#{ComprasDetalleBean.nuevaCompra}" image="ui-icon-docuent"/>
+                    <p:commandButton value="Cancela compra" action="#{ComprasDetalleBean.cancelaCompra}" image="ui-icon-docuent"/>
+                </p:toolbarGroup>
+                <p:toolbarGroup align="right"><p:commandButton value="Salir" action="#{datosHeaderBean.inicio}" image="ui-icon-arrowthickstop-1-e"/>
+                </p:toolbarGroup>
+            </p:toolbar>
+            <p:outputPanel id="panel">
+                <h:outputText value="CANCELADO" style="color: red;font-size: xx-large" rendered="#{ComprasDetalleBean.cancelaEtiquta}"/>
+                <table width="900" border="0">
+                    <tr>
+                        <td width="211"></td>
+                        <td width="118"></td>
+                        <td width="244"></td>
+                        <td width="144"></td>
+                        <td width="94"></td>
+                    </tr>
+                    <tr>
+                        <td colspan="5">
+                            <fieldset>
+                                <table border="0">
+                                    <tr >
+                                        <td colspan="2">
+                                        </td>
+                                        <td width="144"></td>
+                                        <td width="144"></td>
+                                        <td width="194"></td>
+                                    </tr>
+                                    <tr>
+                                        <td width="211" colspan="2"><strong><h:outputText value="Almacén"/></strong><br/>
+                                            <p:outputLabel value="#{ComprasDetalleBean.compra.almacen.nombreAlmacen}"/>
+                                        </td>
+                                        <td width="118" colspan="3">
+
+                                            <table border="0">
+                                                <tr>
+                                                    <td><strong><h:outputText value="No entrada"/></strong></td>
+                                                    <td>
+                                                        <p:inputText readonly="true" value="#{ComprasBean.compra.idCompra}"
+                                                                     size="9"/>
+                                                    </td>
+                                                    <td>
+                                                        <strong><h:outputText value="Fecha compra"/></strong>
+                                                    </td>
+                                                    <td>
+                                                        <p:calendar value="#{ComprasBean.compra.fechaAlta}" size="8"
+                                                                    pattern="dd-MM-yyyy" readonly="true" />
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td><strong><h:outputText value="Orden compra"/></strong></td>
+                                                    <td>
+                                                        <p:inputText readonly="true" value="#{ComprasBean.compra.ordenDeCompra}"
+                                                                     size="9"/>
+                                                    </td>
+                                                    <td>
+                                                        <strong><h:outputText value="Fecha Orden"/></strong>
+                                                    </td>
+                                                    <td>
+                                                        <p:calendar value="#{ComprasBean.compra.fechaOrden}" size="8"
+                                                                    pattern="dd-MM-yyyy" readonly="true" />
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td><strong><h:outputText value="Ref. Proveedor"/></strong></td>
+                                                    <td>
+                                                        <p:inputText readonly="true" value="#{ComprasBean.compra.refProveedor}"
+                                                                     size="9"/>
+                                                    </td>
+                                                    <td>
+                                                        <strong><h:outputText value="Fecha Recepcion"/></strong>
+
+                                                    </td>
+                                                    <td>
+                                                        <p:calendar value="#{ComprasBean.compra.fechaRecepcion}" size="8"
+                                                                    pattern="dd-MM-yyyy" readonly="true" />
+                                                    </td>
+                                                </tr>
+                                            </table>
+
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="5">
+                                            <fieldset style="height:100px">
+                                                <legend>Información del proveedor.</legend>
+                                                <table>
+                                                    <tr>
+                                                        <td colspan="2">
+                                                            <label class="outputText">Nombre</label><br/>
+                                                            <h:outputText value="#{ComprasDetalleBean.compra.proveedor.nombre}"/>
+                                                        </td>
+                                                        <td colspan="2">
+                                                            <label class="outputText">Nombre proveedor</label><br/>
+                                                            <h:outputText value="#{ComprasDetalleBean.compra.proveedor.nombreProveedor}"/>
+                                                        </td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td colspan="4">
+                                                            <label class="outputText">Direccion</label><br/>
+                                                            <h:outputText value="#{ComprasDetalleBean.compra.proveedor.direccion}"/>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <label class="outputText">Contacto</label><br/>
+                                                            <h:outputText value="#{ComprasDetalleBean.compra.proveedor.contacto}"/>
+                                                        </td>
+                                                        <td>
+                                                            <label class="outputText">Telefono</label><br/>
+                                                            <h:outputText value="#{ComprasBean.proveedorInfo.contacto.telefono}"/>
+                                                        </td>
+                                                        <td><label class="outputText">Email</label><br/>
+                                                            <h:outputText value="#{ComprasDetalleBean.compra.proveedor.contacto.email}"/></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                    </tr>
+                                                </table>
+                                            </fieldset>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </fieldset>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="5">
+                            <fieldset>
+                                <p:dataTable id="detalle" var="prod" value="#{ComprasDetalleBean.compra.listDetalle}"
+                                             scrollable="true" scrollHeight="200" >
+                                    <p:column headerText="ID" width="75">
+                                        <h:outputText value="#{prod.producto.idProducto}" />
+                                    </p:column>
+                                    <p:column headerText="Descripción" width="275">
+                                        <h:outputText value="#{prod.producto.descripcion}" />
+                                    </p:column>
+                                    <p:column headerText="Precio unitario" width="75">
+                                        <h:outputText value="#{prod.precio}" />
+                                    </p:column>
+                                    <p:column headerText="Cantidad" width="75">
+                                        <h:outputText value="#{prod.cantidad}" />
+                                    </p:column>
+                                    <p:column headerText="Subtotal" width="75">
+                                        <h:outputText value="#{prod.subtotal}" />
+                                    </p:column>
+                                </p:dataTable>
+
+                            </fieldset>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="5">
+                            <fieldset>
+                                <p:dataTable id="detalleExtra" var="extra" value="#{ComprasDetalleBean.compra.listaExtra}"
+                                             emptyMessage=""
+                                             scrollable="true" scrollHeight="50" >
+                                    <p:column headerText="monto" width="75">
+                                        <h:outputText value="#{index + 1}" />
+                                    </p:column>
+                                    <p:column headerText="ID" width="275">
+                                        <h:outputText value="#{extra.concepto}" />
+                                    </p:column>
+                                    <p:column headerText="monto" width="75">
+                                        <h:outputText value="#{extra.precio}" />
+                                    </p:column>
+                                </p:dataTable>
+
+                            </fieldset>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td><strong><h:outputText value="Subtotal"/></strong></td>
+                        <td><h:outputText id="subtotal" value="#{ComprasDetalleBean.compra.subtotalTotal}"/></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td><strong><h:outputText value="IVA"/></strong></td>
+                        <td><h:outputText id="ivatotal" value="#{ComprasDetalleBean.compra.ivaTotal}"/></td>
+                    </tr>
+                    <tr>
+                        <td height="23"></td>
+                        <td></td>
+                        <td></td>
+                        <td><strong><h:outputText value="Total"/></strong></td>
+                        <td><h:outputText id="total" value="#{ComprasDetalleBean.compra.totalGeneral}"/></td>
+                    </tr>
+
+                </table>
+
+            </p:outputPanel>
+
+        </p:outputPanel>
+
+    </ui:define>
+</ui:composition>

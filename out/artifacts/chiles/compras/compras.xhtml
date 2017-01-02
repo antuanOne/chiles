@@ -1,0 +1,312 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/templates/template.xhtml">
+    <ui:define name="title"><h:outputText value="Compras"/></ui:define>
+    <ui:define name="content">
+        <p:outputPanel autoUpdate="true">
+            <strong><h:outputText value="Compras"/></strong>
+            <p:separator style="background-color: #F00;border-color:#F00;"/>
+            <p:toolbar id="tool">
+                <p:toolbarGroup align="left">  
+                    <p:commandButton value="Nueva compra" image="ui-icon-document"/>    
+                    <p:commandButton value="Registra compra" action="#{ComprasBean.guardarCompra}" image="ui-icon ui-icon-disk"/>  
+                </p:toolbarGroup>  
+                <p:toolbarGroup align="right">  
+                    <p:commandButton value="Regresar" action="#{ComprasBean.regresar}" image="ui-icon-arrowreturnthick-1-w"/>
+                    <p:commandButton value="Salir" action="#{datosHeaderBean.inicio}" image="ui-icon-arrowthickstop-1-e"/>
+                </p:toolbarGroup>
+            </p:toolbar>
+            <p:outputPanel id="panel">
+                <table width="900" border="0">
+                    <tr>
+                        <td width="211"></td>
+                        <td width="118"></td>
+                        <td width="244"></td>
+                        <td width="144"></td>
+                        <td width="94"></td>
+                    </tr>
+                    <tr>
+                        <td colspan="5">
+                            <fieldset>
+                                <table border="0">
+                                    <tr >
+                                        <td colspan="2">
+                                        </td>
+                                        <td width="144"></td>
+                                        <td width="144"></td>
+                                        <td width="194"></td>
+                                    </tr>
+                                    <tr>
+                                        <td width="211" colspan="2"><strong><h:outputText value="Almacén"/></strong><br/>
+                                            <p:selectOneMenu value="#{ComprasBean.compra.almacen.idAlmacen}" style="width: 250px">
+                                                <f:selectItem itemLabel="Seleccione un almacen" itemValue="0" />
+                                                <f:selectItems value="#{ComprasBean.listaAlmacen}" var="al" itemValue="#{al.idAlmacen}" itemLabel="#{al.nombreAlmacen}"/>
+                                                <p:ajax event="change" listener="#{ComprasBean.seleccionaAlmacen}"/>
+                                            </p:selectOneMenu>
+                                        </td>
+                                        <td width="118" colspan="3" rowspan="2">
+
+                                            <table border="0">
+                                                <tr>
+                                                    <td><strong><h:outputText value="No entrada"/></strong></td>
+                                                    <td>
+                                                        <p:inputText readonly="true" value="#{ComprasBean.compra.idCompra}"
+                                                                     size="9"/>
+                                                    </td>
+                                                    <td>
+                                                        <strong><h:outputText value="Fecha compra"/></strong>
+                                                    </td>
+                                                    <td>
+                                                        <p:calendar value="#{ComprasBean.compra.fechaAlta}" size="8"
+                                                                    pattern="dd-MM-yyyy" />
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td><strong><h:outputText value="Orden compra"/></strong></td>
+                                                    <td>
+                                                        <p:inputText value="#{ComprasBean.compra.ordenDeCompra}"
+                                                                     size="9"/>
+                                                    </td>
+                                                    <td>
+                                                        <strong><h:outputText value="Fecha Orden"/></strong>
+                                                    </td>
+                                                    <td>
+                                                        <p:calendar value="#{ComprasBean.compra.fechaOrden}" size="8"
+                                                                    pattern="dd-MM-yyyy" showOn="button" />
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td><strong><h:outputText value="Ref. Proveedor"/></strong></td>
+                                                    <td>
+                                                        <p:inputText value="#{ComprasBean.compra.refProveedor}"
+                                                                     size="9"/>
+                                                    </td>
+                                                    <td>
+                                                        <strong><h:outputText value="Fecha Recepcion"/></strong>
+
+                                                    </td>
+                                                    <td>
+                                                        <p:calendar value="#{ComprasBean.compra.fechaRecepcion}" size="8"
+                                                                    pattern="dd-MM-yyyy" showOn="button" />
+                                                    </td>
+                                                </tr>
+                                            </table>
+
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2"><strong><h:outputText value="Proveedor"/></strong><br/>
+                                            <p:selectOneMenu value="#{ComprasBean.compra.proveedor.idProveedor}" style="width: 250px"
+                                                             filter="true" filterMatchMode="contains"
+                                                             valueChangeListener="#{ComprasBean.seleccionaProveedor}">
+                                                <f:selectItem itemLabel="Seleccione un proveedor" itemValue="0" />
+                                                <f:selectItems value="#{ComprasBean.listProveedores}" var="provee" itemValue="#{provee.idProveedor}" itemLabel="#{provee.nombre} - #{provee.nombreProveedor}"/>
+                                                <p:ajax event="change"/>
+                                            </p:selectOneMenu>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="5">
+                                            <fieldset style="height:100px">
+                                                <legend>Información del proveedor.</legend>
+                                                <table>
+                                                    <tr>
+                                                        <td colspan="2">
+                                                            <label class="outputText">Nombre</label><br/>
+                                                            <h:outputText value="#{ComprasBean.proveedorInfo.nombre}"/>
+                                                        </td>
+                                                        <td colspan="2">
+                                                            <label class="outputText">Nombre proveedor</label><br/>
+                                                            <h:outputText value="#{ComprasBean.proveedorInfo.nombreProveedor}"/>
+                                                        </td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td colspan="4">
+                                                            <label class="outputText">Direccion</label><br/>
+                                                            <h:outputText value="#{ComprasBean.proveedorInfo.direccion}"/>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <label class="outputText">Contacto</label><br/>
+                                                            <h:outputText value="#{ComprasBean.proveedorInfo.contacto}"/>
+                                                        </td>
+                                                        <td>
+                                                            <label class="outputText">Telefono</label><br/>
+                                                            <h:outputText value="#{ComprasBean.proveedorInfo.contacto.telefono}"/>
+                                                        </td>
+                                                        <td><label class="outputText">Email</label><br/>
+                                                            <h:outputText value="#{ComprasBean.proveedorInfo.contacto.email}"/></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                    </tr>
+                                                </table>
+                                            </fieldset>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <strong><h:outputText value="Codigo"/></strong><br/>
+                                            <h:inputText value="#{ComprasBean.codigo}" size="6" maxlength="6"
+                                                         onkeypress="if (event.keyCode === 13) {
+                                                                     changeFocus('form:cantidad');
+                                                                 }">
+                                                <p:ajax event="change" listener="#{ComprasBean.getProductoXcodigo}"/>
+                                            </h:inputText>
+                                        </td>
+                                        <td>
+                                            <strong><h:outputText value="Producto"/></strong><br/>
+                                            <p:selectOneMenu id="Producto" value="#{ComprasBean.id_producto}"
+                                                             filter="true" filterMatchMode="contains"
+                                                             valueChangeListener="#{ComprasBean.seleccionaProducto}" style="width: 250px">
+                                                <f:selectItem itemLabel="Seleccione un producto" itemValue="0" />
+                                                <f:selectItems value="#{ComprasBean.listaProductos}" var="p" itemValue="#{p.idProducto}" itemLabel="#{p.descripcion}"/>
+                                                <p:ajax event="change"/>
+                                            </p:selectOneMenu>
+                                        </td>
+                                        <td><strong><h:outputText value="Cantidad"/></strong><br/>
+                                            <h:inputText id="cantidad" value="#{ComprasBean.cantidad}" size="6" maxlength="6"
+                                                         onkeypress="if (event.keyCode === 13) {
+                                                                     changeFocus('form:precio');
+                                                                 }"/>
+                                        </td>
+                                        <td>
+                                            <strong><h:outputText value="Precio"/></strong><br/>
+                                            <h:inputText id="precio" value="#{ComprasBean.precio}" size="6" maxlength="6"
+                                                         onkeypress="if (event.keyCode === 13) {
+                                                                     changeFocus('form:add');
+                                                                 }"/>
+                                        </td>
+                                        <td>
+                                            <br/>
+                                            <p:commandButton id="add" value="Agregar" action="#{ComprasBean.addDetalle}"
+                                                             onkeypress="if (event.keyCode === 13) {
+                                                                         this.click();
+                                                                         return false;
+                                                                     }"/>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </fieldset>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="5">
+                            <fieldset>
+                                <p:dataTable id="detalle" var="prod" value="#{ComprasBean.compra.listDetalle}"
+                                             emptyMessage="No se han agregado productos"
+                                             scrollable="true" scrollHeight="200" >
+                                    <p:column headerText="ID" width="75">
+                                        <h:outputText value="#{prod.producto.idProducto}" />
+                                    </p:column>
+                                    <p:column headerText="Descripción" width="275">
+                                        <h:outputText value="#{prod.producto.descripcion}" />
+                                    </p:column>
+                                    <p:column headerText="Precio unitario" width="75">
+                                        <h:outputText value="#{prod.precio}" />
+                                    </p:column>
+                                    <p:column headerText="Cantidad" width="75">
+                                        <h:outputText value="#{prod.cantidad}" />
+                                    </p:column>
+                                    <p:column headerText="Subtotal" width="75">
+                                        <h:outputText value="#{prod.subtotal}" />
+                                    </p:column>
+                                    <p:column width="50">
+                                        <p:outputPanel>
+                                            <p:commandButton action="#{ComprasBean.borrarRenglon}" title="Borrar"
+                                                             image="ui-icon-trash">
+                                                <f:setPropertyActionListener target="#{ComprasBean.prodABorrar}" value="#{prod}" />
+                                            </p:commandButton>
+                                        </p:outputPanel>
+                                    </p:column>
+                                </p:dataTable>
+
+                            </fieldset>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p:commandButton value="Conceptos extra" type="button" onclick="PF('dlg2').show();" />
+                        </td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td colspan="5">
+                            <fieldset>
+                                <p:dataTable id="detalleExtra" var="extra" value="#{ComprasBean.compra.listaExtra}"
+                                             emptyMessage=""
+                                             scrollable="true" scrollHeight="50" >
+                                    <p:column headerText="monto" width="75">
+                                        <h:outputText value="#{index + 1}" />
+                                    </p:column>
+                                    <p:column headerText="ID" width="275">
+                                        <h:outputText value="#{extra.concepto}" />
+                                    </p:column>
+                                    <p:column headerText="monto" width="75">
+                                        <h:outputText value="#{extra.precio}" />
+                                    </p:column>
+                                    <p:column width="50">
+                                        <p:outputPanel>
+                                            <p:commandButton action="#{ComprasBean.borrarConceptoExtra}" title="Borrar"
+                                                             image="ui-icon-trash">
+                                                <f:setPropertyActionListener target="#{ComprasBean.indexConceptoExtra}" value="#{index}" />
+                                            </p:commandButton>
+                                        </p:outputPanel>
+                                    </p:column>
+                                </p:dataTable>
+
+                            </fieldset>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td><strong><h:outputText value="Subtotal"/></strong></td>
+                        <td><h:outputText id="subtotal" value="#{ComprasBean.compra.subtotalTotal}"/></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td><strong><h:outputText value="IVA"/></strong></td>
+                        <td><h:outputText id="ivatotal" value="#{ComprasBean.compra.ivaTotal}"/></td>
+                    </tr>
+                    <tr>
+                        <td height="23"></td>
+                        <td></td>
+                        <td></td>
+                        <td><strong><h:outputText value="Total"/></strong></td>
+                        <td><h:outputText id="total" value="#{ComprasBean.compra.totalGeneral}"/></td>
+                    </tr>
+
+                </table>
+
+            </p:outputPanel>
+
+            <p:dialog header="Modal Dialog" widgetVar="dlg2" modal="true" height="100">
+                <table>
+                    <tr>
+                        <td>
+                            <h:inputText id="concepto" value="#{ComprasBean.conceptoExtra.concepto}" />
+                        </td>
+                        <td>
+                            <h:inputText id="monto" value="#{ComprasBean.conceptoExtra.precio}" />
+                        </td>
+                        <td>
+                            <p:commandButton value="Agregar extra" action="#{ComprasBean.agregaExtra}" image="ui-icon ui-icon-disk"/>
+                        </td>
+                    </tr>
+                </table>
+            </p:dialog>
+        </p:outputPanel>
+
+    </ui:define>
+</ui:composition>

@@ -10,6 +10,7 @@ import javax.faces.context.FacesContext;
 import javax.faces.event.ValueChangeEvent;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -44,6 +45,7 @@ public class VentasBean  extends GenericBean implements Serializable {
 
     final public void nuevo(){
         venta = new MasterVenta();
+        venta.setFechaAlta(new Date());
         try {
             setClienteList(clienteDAO.getClientes());
             setProductoList(productoDAO.getProductos());
@@ -97,14 +99,14 @@ public class VentasBean  extends GenericBean implements Serializable {
         if (!prodPresente) {
             detalleVenta.setPrecio(precio);
             detalleVenta.setCantidad(cantidad);
-            detalleVenta.setIva(iva);
+            detalleVenta.setIva(0.16f);
             venta.getListaDetalle().add(detalleVenta);
         } else {
             detalleVenta = venta.getListaDetalle().get(venta.getListaDetalle().indexOf(detalleVenta));
             detalleVenta.setPrecio(precio);
             cantidad = cantidad + detalleVenta.getCantidad();
             detalleVenta.setCantidad(cantidad);
-            detalleVenta.setIva(iva);
+            detalleVenta.setIva(0.16f);
         }
 
         codigo = "";

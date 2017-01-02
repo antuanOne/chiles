@@ -11,8 +11,8 @@
             <p:separator style="background-color: #F00;border-color:#F00;"/>
             <p:toolbar id="tool">
                 <p:toolbarGroup align="left">
-                    <p:commandButton value="Nueva compra" action="#{VentasBean.nuevo}" image="ui-icon-document"/>
-                    <p:commandButton value="Registra compra" action="#{VentasBean.guardarVenta}"
+                    <p:commandButton value="Nueva venta" action="#{VentasBean.nuevo}" image="ui-icon-document"/>
+                    <p:commandButton value="Registra venta" action="#{VentasBean.guardarVenta}"
                                      image="ui-icon ui-icon-disk"/>
                 </p:toolbarGroup>
                 <p:toolbarGroup align="right">
@@ -61,7 +61,7 @@
                                                                  size="9"/>
                                                 </td>
                                                 <td>
-                                                    <strong><h:outputText value="Fecha compra"/></strong>
+                                                    <strong><h:outputText value="Fecha venta"/></strong>
                                                 </td>
                                                 <td>
                                                     <p:calendar value="#{VentasBean.venta.fechaAlta}" size="8"
