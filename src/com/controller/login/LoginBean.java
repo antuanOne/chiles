@@ -4,6 +4,10 @@
  */
 package com.controller.login;
 
+import com.app.GenericBean;
+import com.persistencia.UsuarioDAO;
+import com.pojos.Usuario;
+
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.logging.Level;
@@ -18,7 +22,7 @@ import javax.faces.context.FacesContext;
  */
 @ManagedBean(name = "LoginBean")
 @ViewScoped
-public class LoginBean implements Serializable {
+public class LoginBean extends GenericBean implements Serializable {
 
     final private String msgHeader = "Login";
     private String usuarioLogin;
@@ -32,16 +36,18 @@ public class LoginBean implements Serializable {
     }
 
     public void entrar() {
-
-        try {
+        UsuarioDAO usuarioM = new UsuarioDAO();
+        if (usuarioM.isUsuarioValido(usuarioLogin, password)) {
+            Usuario usuarioLog = usuarioM.getUsuario(usuarioLogin);
             try {
+                FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("usuario", usuarioLog);
                 FacesContext.getCurrentInstance().getExternalContext().redirect("inicio/home.xhtml");
                 // FacesContext.getCurrentInstance().getExternalContext().redirect(url);
             } catch (IOException ex) {
                 Logger.getLogger(LoginBean.class.getName()).log(Level.SEVERE, null, ex);
             }
-        } catch (Exception ex) {
-            Logger.getLogger(LoginBean.class.getName()).log(Level.SEVERE, null, ex);
+        } else {
+            showErrorMessage("Informacion incorrecta", "Verifique su usuario y password");
         }
     }
 

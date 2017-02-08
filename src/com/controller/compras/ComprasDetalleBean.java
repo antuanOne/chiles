@@ -34,6 +34,7 @@ public class ComprasDetalleBean extends GenericBean implements Serializable {
             System.out.println(id);
             try {
                 compra = comprasDAO.getCompraById(id);
+                compra.calculaTotales();
                 if(compra.getEstatus().toUpperCase().equals('C')){
                     cancelaEtiquta = true;
                 }

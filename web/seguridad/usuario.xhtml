@@ -1,0 +1,100 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/templates/template.xhtml">
+    <ui:define name="title"><h:outputText value="Usuarios"/></ui:define>
+    <ui:define name="content">
+        <p:outputPanel autoUpdate="true">
+            <strong><h:outputText value="Usuarios"/></strong>
+            <p:separator style="background-color: #F00;border-color:#F00;"/> 
+            <p:toolbar id="tool">
+                <p:toolbarGroup align="left">  
+                    <p:commandButton value="Nuevo" action="#{UsuAplicacionBean.nuevo}" image="ui-icon-document"/>  
+                   <p:commandButton value="Guardar" action="#{UsuAplicacionBean.guardar}" image="ui-icon ui-icon-disk"/>  
+                    <p:commandButton value="Eliminar" action="#{UsuAplicacionBean.eliminar}" image="ui-icon ui-icon-close"/>
+                </p:toolbarGroup>  
+                <p:toolbarGroup align="right">  
+                    <p:commandButton value="Salir" action="#{datosHeaderBean.inicio}" image="ui-icon-arrowthickstop-1-e"/>
+                </p:toolbarGroup>
+            </p:toolbar>
+            <table width="800" border="0">
+                <tr>
+                    <td align="center" valign="top">
+
+                        <p:panel id="pnl" header="Lista de usuarios"  toggleSpeed="500">  
+                            <div class="ui-widget-content ui-corner-bottom ui-helper-clearfix ui-shadow">
+                                <p:dataTable var="tabla" value="#{UsuAplicacionBean.listaUsuarios}" id="tabla" 
+                                             selection="#{UsuAplicacionBean.usuarioGral}"
+                                             rowKey="#{tabla.idUsuario}"
+                                             selectionMode="single"> 
+                                    <p:ajax event="rowSelect" listener="#{UsuAplicacionBean.onRowSelect}"/> 
+                                    <p:column headerText="ID" sortBy="#{tabla.idUsuario}" style="width: 30px">  
+                                        <h:outputText value="#{tabla.idUsuario}" style="width: 30px"/> 
+                                    </p:column>  
+                                    <p:column headerText="Nombre" sortBy="#{tabla.user_name}" style="width: 140px">  
+                                        <h:outputText value="#{tabla.user_name}" style="width: 30px"/> 
+                                    </p:column>                     
+                                    <p:column headerText="Nombre" sortBy="#{tabla.nombre}" style="width: 140px">  
+                                        <h:outputText value="#{tabla.nombre}" style="width: 30px"/> 
+                                    </p:column>  
+                                </p:dataTable>
+                            </div>
+                        </p:panel>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="left" valign="top">
+                        <div class="ui-widget-content ui-corner-bottom ui-helper-clearfix ui-shadow">
+                            <p:panel id="panel" style="border: 0" >
+                                <fieldset style="height:210px">
+                                    <legend>Información del usuario.</legend>
+                                    <table width="400" border="0">
+                                        <tr>
+                                            <td width="200">
+                                                Almacen</td>
+                                            <td><p:selectOneMenu id="almacen" value="#{UsuAplicacionBean.usuarioSeg.almacen.idAlmacen}" valueChangeListener="#{UsuAplicacionBean.seleccionaAlmacen}"> 
+                                                    <f:selectItem itemValue="0" itemLabel="Seleccione un Almacen"/>
+                                                    <f:selectItems value="#{UsuAplicacionBean.listaAlmacen}" var="alRepDia" itemValue="#{alRepDia.idAlmacen}" itemLabel="#{alRepDia.nombreAlmacen}"/>  
+                                                  
+                                                </p:selectOneMenu>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td width="200">Numero de Usuario</td>
+                                            <td> <h:outputText value="#{UsuAplicacionBean.usuarioSeg.idUsuario}"/></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Nombre de logeo</td>
+                                            <td> <h:inputText value="#{UsuAplicacionBean.usuarioSeg.user_name}"/></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Nombre del Usuario</td>
+                                            <td> <h:inputText value="#{UsuAplicacionBean.usuarioSeg.nombre}"/></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Password</td>
+                                            <td><h:inputText value="#{UsuAplicacionBean.usuarioSeg.pass}"/></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Fecha de Alta</td>
+                                            <td> <h:outputText value="#{UsuAplicacionBean.usuarioSeg.fecha_Alta}"/></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Activo</td>
+                                            <td> <h:selectBooleanCheckbox value="#{UsuAplicacionBean.usuarioSeg.activo}"/></td>
+                                        </tr>
+
+                                    </table>
+
+                                </fieldset>
+                                
+                            </p:panel>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </p:outputPanel>
+    </ui:define>
+</ui:composition>

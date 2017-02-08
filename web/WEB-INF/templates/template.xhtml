@@ -95,21 +95,8 @@
                     </tr>
                     <tr>
                         <td valign="top" style="border-radius: 9px">
-                    <p:panelMenu style="width:200px">
-                        <p:submenu label="Catalogos">
-                             <p:menuitem value="Almacen" url="/catalogo/almacen.xhtml" icon="ui-icon-home" />
-                             <p:menuitem value="Proveedores" url="/catalogo/proveedor.xhtml" icon="ui-icon-home" />
-                             <p:menuitem value="Producto" url="/catalogo/producto.xhtml" icon="ui-icon-tag" />
-                        </p:submenu>
-                        <p:submenu label="Compras">
-                             <p:menuitem value="Compras" url="/compras/compras.xhtml" icon="ui-icon-cart" />
-                            <p:menuitem value="Historial Compras" url="/compras/historialCompras.xhtml" icon="ui-icon-cart" />
-                        </p:submenu>
-                        <p:submenu label="Ventas">
-                            <p:menuitem value="Ventas" url="/ventas/ventas.xhtml" icon="ui-icon-cart" />
-                            <p:menuitem value="Historial Ventas" url="/ventas/historialVentas.xhtml" icon="ui-icon-cart" />
-                        </p:submenu>
-                    </p:panelMenu>
+                            <p:panelMenu model="#{menuBean.model}" style="width:200px"/>
+
                     </td>
                     <td valign="top" style="border-radius: 9px;background-color: white">
                     <ui:insert name="content"></ui:insert>

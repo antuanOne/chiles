@@ -61,28 +61,34 @@
                                                     </td>
                                                     <td>
                                                         <p:calendar value="#{ComprasBean.compra.fechaAlta}" size="8"
-                                                                    pattern="dd-MM-yyyy" />
+                                                                    pattern="dd-MM-yyyy" disabled="true"/>
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <td><strong><h:outputText value="Orden compra"/></strong></td>
                                                     <td>
                                                         <p:inputText value="#{ComprasBean.compra.ordenDeCompra}"
-                                                                     size="9"/>
+                                                                     size="9">
+                                                            <p:ajax event="change" listener="#{ComprasBean.ajaxDummy}"/>
+                                                        </p:inputText>
                                                     </td>
                                                     <td>
                                                         <strong><h:outputText value="Fecha Orden"/></strong>
                                                     </td>
                                                     <td>
                                                         <p:calendar value="#{ComprasBean.compra.fechaOrden}" size="8"
-                                                                    pattern="dd-MM-yyyy" showOn="button" />
+                                                                    pattern="dd-MM-yyyy" showOn="button">
+                                                            <p:ajax event="dateSelect" listener="#{ComprasBean.fechaOrdenSelect}"/>
+                                                        </p:calendar>
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <td><strong><h:outputText value="Ref. Proveedor"/></strong></td>
                                                     <td>
                                                         <p:inputText value="#{ComprasBean.compra.refProveedor}"
-                                                                     size="9"/>
+                                                                     size="9">
+                                                            <p:ajax event="change" listener="#{ComprasBean.ajaxDummy}"/>
+                                                        </p:inputText>
                                                     </td>
                                                     <td>
                                                         <strong><h:outputText value="Fecha Recepcion"/></strong>
@@ -90,7 +96,9 @@
                                                     </td>
                                                     <td>
                                                         <p:calendar value="#{ComprasBean.compra.fechaRecepcion}" size="8"
-                                                                    pattern="dd-MM-yyyy" showOn="button" />
+                                                                    pattern="dd-MM-yyyy" showOn="button">
+                                                            <p:ajax event="dateSelect" listener="#{ComprasBean.fechaRecepcionSelect}"/>
+                                                        </p:calendar>
                                                     </td>
                                                 </tr>
                                             </table>

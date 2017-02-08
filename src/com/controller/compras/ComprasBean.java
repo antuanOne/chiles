@@ -11,10 +11,12 @@ import com.pojos.DetalleCompra;
 import com.pojos.MasterCompra;
 import com.pojos.Producto;
 import com.pojos.Proveedor;
+import org.primefaces.event.SelectEvent;
 
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -39,7 +41,6 @@ public class ComprasBean extends GenericBean implements Serializable {
 
     private long id_producto;
     private int cantidad;
-    private float iva = 0.16f;
     private float precio;
     private MasterCompra compra;
     private DetalleCompra prodABorrar;
@@ -71,7 +72,6 @@ public class ComprasBean extends GenericBean implements Serializable {
         }
         precio = 0;
         cantidad = 0;
-        iva = 0;
         id_producto = 0L;
         compra.calculaTotales();
         conceptoExtra = new ConceptosExtra();
@@ -129,14 +129,12 @@ public class ComprasBean extends GenericBean implements Serializable {
         if (!prodPresente) {
             dv.setPrecio(precio);
             dv.setCantidad(cantidad);
-            dv.setIva(iva);
             compra.getListDetalle().add(dv);
         } else {
             dv = compra.getListDetalle().get(compra.getListDetalle().indexOf(dv));
             dv.setPrecio(precio);
             cantidad = cantidad + dv.getCantidad();
             dv.setCantidad(cantidad);
-            dv.setIva(iva);
         }
         codigo = "";
         compra.calculaTotales();
@@ -178,7 +176,7 @@ public class ComprasBean extends GenericBean implements Serializable {
     public void borrarConceptoExtra() {
         compra.getListaExtra().remove(indexConceptoExtra);
         compra.calculaTotales();
-        System.out.println("kmfkefmkefmkefmkemfke  "+ indexConceptoExtra);
+        System.out.println("kmfkefmkefmkefmkemfke  " + indexConceptoExtra);
     }
 
     public void regresar() {
@@ -187,6 +185,18 @@ public class ComprasBean extends GenericBean implements Serializable {
         } catch (IOException ex) {
             Logger.getLogger(ComprasBean.class.getName()).log(Level.SEVERE, null, ex);
         }
+
+    }
+
+    public void fechaOrdenSelect(SelectEvent event) {
+        compra.setFechaOrden((Date) event.getObject());
+    }
+
+    public void fechaRecepcionSelect(SelectEvent event) {
+        compra.setFechaRecepcion((Date) event.getObject());
+    }
+
+    public void ajaxDummy() {
 
     }
 
@@ -237,20 +247,6 @@ public class ComprasBean extends GenericBean implements Serializable {
      */
     public void setCantidad(int cantidad) {
         this.cantidad = cantidad;
-    }
-
-    /**
-     * @return the iva
-     */
-    public float getIva() {
-        return iva;
-    }
-
-    /**
-     * @param iva the iva to set
-     */
-    public void setIva(float iva) {
-        this.iva = iva;
     }
 
     /**

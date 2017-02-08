@@ -211,7 +211,7 @@ public class MasterCompra implements Serializable {
     }
 
     /**
-     * @param fechaOrde the fechaOrde to set
+     * @param fechaOrden the fechaOrde to set
      */
     public void setFechaOrden(Date fechaOrden) {
         this.fechaOrden = fechaOrden;

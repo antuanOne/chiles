@@ -26,6 +26,7 @@
     <mapping class="com.pojos.DireccionCliente"/>
     <mapping class="com.pojos.MasterVenta"/>
     <mapping class="com.pojos.DetalleVenta"/>
+    <mapping class="com.pojos.Usuario"/>
     
   </session-factory>
 </hibernate-configuration>
