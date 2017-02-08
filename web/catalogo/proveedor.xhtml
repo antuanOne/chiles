@@ -1,6 +1,5 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:ui="http://java.sun.com/jsf/facelets"
-                xmlns:f="http://java.sun.com/jsf/core"
                 xmlns:h="http://java.sun.com/jsf/html"
                 xmlns:p="http://primefaces.org/ui"
                 template="/WEB-INF/templates/template.xhtml">
@@ -45,9 +44,9 @@
                     <td align="left" valign="top">
                         <div class="ui-widget-content ui-corner-bottom ui-helper-clearfix ui-shadow">
                             <p:panel id="panel" style="border: 0">
-                                <fieldset style="height:140px">
+                                <fieldset style="height:210px">
                                     <legend>Información del proveedor.</legend>
-                                    <table>
+                                    <table border="0">
                                         <tr>
                                             <td><h:outputText value="Nombre"/><br/>
                                                 <p:inputText value="#{ProveedorBean.proveedor.nombre}"/>
@@ -55,13 +54,14 @@
                                             <td><h:outputText value="Nombre proveedor"/><br/>
                                                 <p:inputText value="#{ProveedorBean.proveedor.nombreProveedor}"/>
                                             </td>
-                                            <td>                  
-                                                <h:outputText value="Direccion"/><br/>
-                                            </td>
                                             <td>
                                             </td>
                                         </tr>
-
+                                        <tr>
+                                            <td colspan="3">
+                                                <strong><i>Contacto</i></strong>
+                                            </td>
+                                        </tr>
                                         <tr>
                                             <td>
                                                 <h:outputText value="Contacto"/><br/>
@@ -75,6 +75,39 @@
                                                 <h:outputText value="E-mail"/><br/>
                                                 <p:inputText value="#{ProveedorBean.proveedor.contacto.email}"/>
                                             </td>                                            
+                                        </tr>
+                                        <tr>
+                                            <td colspan="3">
+                                                <strong><i>Direccion</i></strong>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <h:outputText value="Calle"/><br/>
+                                                <p:inputText value="#{ProveedorBean.proveedor.direccion.calle}"/>
+                                            </td>
+                                            <td>
+                                                <h:outputText value="Colonia"/><br/>
+                                                <p:inputText value="#{ProveedorBean.proveedor.direccion.colonia}"/>
+                                            </td>
+                                            <td>
+                                                <h:outputText value="CP"/><br/>
+                                                <p:inputText value="#{ProveedorBean.proveedor.direccion.cp}"/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <h:outputText value="No exterior"/><br/>
+                                                <p:inputText value="#{ProveedorBean.proveedor.direccion.noExterior}"/>
+                                            </td>
+                                            <td>
+                                                <h:outputText value="No interio"/><br/>
+                                                <p:inputText value="#{ProveedorBean.proveedor.direccion.noInterior}"/>
+                                            </td>
+                                            <td>
+                                                <h:outputText value="Referencia"/><br/>
+                                                <p:inputText value="#{ProveedorBean.proveedor.direccion.referencia}"/>
+                                            </td>
                                         </tr>
                                     </table>
                                 </fieldset>

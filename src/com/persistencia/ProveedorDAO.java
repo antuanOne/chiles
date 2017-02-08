@@ -35,6 +35,8 @@ public class ProveedorDAO implements Serializable{
         try {
             session.beginTransaction();
             if (prov.getIdProveedor() == 0) {
+                session.save(prov.getContacto());
+                session.save(prov.getDireccion());
                 session.save(prov);
             } else {
                 Proveedor provTmp = (Proveedor) session.merge(prov);

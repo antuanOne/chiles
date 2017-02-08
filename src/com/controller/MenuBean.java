@@ -43,7 +43,7 @@ public class MenuBean extends GenericBean implements Serializable {
             String aplicacion = menuAcc.getAplicacion();
             DefaultSubMenu sub = new DefaultSubMenu();
             sub.setLabel(aplicacion);
-            sub.setStyle("font-size: 10px !important;");
+            sub.setStyle("font-size: 12px !important;");
             for (Acceso acc : menuAcc.getAccesos()) {
                 DefaultMenuItem item = new DefaultMenuItem();
                 item.setValue(acc.getModulo());
