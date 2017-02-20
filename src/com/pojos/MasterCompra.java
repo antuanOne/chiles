@@ -56,8 +56,6 @@ public class MasterCompra implements Serializable {
     private float totalGeneral;
     @Transient
     private float subtotalTotal;
-    @Transient
-    private float ivaTotal;
 
     public MasterCompra() {
         this.idCompra = 0;
@@ -76,17 +74,15 @@ public class MasterCompra implements Serializable {
     public void calculaTotales() {
         setSubtotalTotal(0);
         setTotalGeneral(0);
-        setIvaTotal(0);
         for (DetalleCompra d : getListDetalle()) {
             setSubtotalTotal(d.getSubtotal() + getSubtotalTotal());
-            setIvaTotal((getSubtotalTotal() * d.getIva()) + getIvaTotal());
         }
 
         for (ConceptosExtra extr : listaExtra) {
             subtotalTotal = subtotalTotal + extr.getPrecio();
         }
 
-        setTotalGeneral(getIvaTotal() + getSubtotalTotal());
+        setTotalGeneral( getSubtotalTotal());
     }
 
     @Override
@@ -145,10 +141,6 @@ public class MasterCompra implements Serializable {
 
     public float getSubtotalTotal() {
         return subtotalTotal;
-    }
-
-    public float getIvaTotal() {
-        return ivaTotal;
     }
 
     public long getIdCompra() {
@@ -243,13 +235,6 @@ public class MasterCompra implements Serializable {
      */
     public void setSubtotalTotal(float subtotalTotal) {
         this.subtotalTotal = subtotalTotal;
-    }
-
-    /**
-     * @param ivaTotal the ivaTotal to set
-     */
-    public void setIvaTotal(float ivaTotal) {
-        this.ivaTotal = ivaTotal;
     }
 
     /**

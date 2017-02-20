@@ -18,7 +18,7 @@
                 </p:toolbarGroup>
             </p:toolbar>
             <p:outputPanel id="panel">
-                <h:outputText value="CANCELADO" style="color: red;font-size: xx-large" rendered="#{ComprasDetalleBean.cancelaEtiquta}"/>
+                <h:outputText value="CANCELADO" style="color: red;font-size: xx-large" rendered="#{VentasDetalleBean.cancelaEtiquta}"/>
                 <table width="900" border="0">
                     <tr>
                         <td width="211"></td>
@@ -46,10 +46,14 @@
 
                                             <table border="0">
                                                 <tr>
-                                                    <td><strong><h:outputText value="No entrada"/></strong></td>
-                                                    <td>
+                                                    <td><strong><h:outputText value="No entrada"/></strong>
+                                                        <br/>
                                                         <p:inputText readonly="true" value="#{VentasDetalleBean.venta.idVenta}"
                                                                      size="9"/>
+                                                    </td>
+                                                    <td><strong><h:outputText value="Consecutivo"/></strong>
+                                                        <br/>
+                                                        <p:inputText readonly="true" value="#{VentasDetalleBean.venta.concecutivo}"/>
                                                     </td>
                                                     <td>
                                                         <strong><h:outputText value="Fecha compra"/></strong>
@@ -135,13 +139,13 @@
                                         <h:outputText value="#{prod.producto.descripcion}" />
                                     </p:column>
                                     <p:column headerText="Precio unitario" width="75">
-                                        <h:outputText value="#{prod.precio}" />
+                                       $ <h:outputText value="#{prod.precio}" />
                                     </p:column>
                                     <p:column headerText="Cantidad" width="75">
                                         <h:outputText value="#{prod.cantidad}" />
                                     </p:column>
                                     <p:column headerText="Subtotal" width="75">
-                                        <h:outputText value="#{prod.subtotal}" />
+                                       $ <h:outputText value="#{prod.subtotal}" />
                                     </p:column>
                                 </p:dataTable>
 
@@ -157,21 +161,14 @@
                         <td></td>
                         <td></td>
                         <td><strong><h:outputText value="Subtotal"/></strong></td>
-                        <td><h:outputText id="subtotal" value="#{VentasDetalleBean.venta.subtotalTotal}"/></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td><strong><h:outputText value="IVA"/></strong></td>
-                        <td><h:outputText id="ivatotal" value="#{VentasDetalleBean.venta.ivaTotal}"/></td>
+                        <td>$ <h:outputText id="subtotal" value="#{VentasDetalleBean.venta.subtotalTotal}"/></td>
                     </tr>
                     <tr>
                         <td height="23"></td>
                         <td></td>
                         <td></td>
                         <td><strong><h:outputText value="Total"/></strong></td>
-                        <td><h:outputText id="total" value="#{VentasDetalleBean.venta.totalGeneral}"/></td>
+                        <td>$ <h:outputText id="total" value="#{VentasDetalleBean.venta.totalGeneral}"/></td>
                     </tr>
 
                 </table>

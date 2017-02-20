@@ -45,7 +45,7 @@ public class VentasBean  extends GenericBean implements Serializable {
 
     final public void nuevo(){
         venta = new MasterVenta();
-        venta.setFechaAlta(new Date());
+        venta.getAlmacen().setIdAlmacen(getUsuario().getAlmacen().getIdAlmacen());
         try {
             setClienteList(clienteDAO.getClientes());
             setProductoList(productoDAO.getProductos());
@@ -62,6 +62,10 @@ public class VentasBean  extends GenericBean implements Serializable {
 
     public void seleccionaAlmacen() {
         getVenta().setListaDetalle(new ArrayList<>());
+    }
+
+    public void selectConcecutivo() {
+        System.out.println("");
     }
 
     public void seleccionaCliente(ValueChangeEvent e) {
@@ -99,14 +103,12 @@ public class VentasBean  extends GenericBean implements Serializable {
         if (!prodPresente) {
             detalleVenta.setPrecio(precio);
             detalleVenta.setCantidad(cantidad);
-            detalleVenta.setIva(0.16f);
             venta.getListaDetalle().add(detalleVenta);
         } else {
             detalleVenta = venta.getListaDetalle().get(venta.getListaDetalle().indexOf(detalleVenta));
             detalleVenta.setPrecio(precio);
             cantidad = cantidad + detalleVenta.getCantidad();
             detalleVenta.setCantidad(cantidad);
-            detalleVenta.setIva(0.16f);
         }
 
         codigo = "";

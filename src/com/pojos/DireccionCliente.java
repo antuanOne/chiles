@@ -21,6 +21,11 @@ public class DireccionCliente {
     @Column(name = "REFERENCIA")
     private String referencia;
 
+    @Override
+    public String toString() {
+        return  "Calle.- " + getCalle() + " Colonia.- " + getColonia() + " CP.- " + getCp() + ", No exterior.- " + getNoExterior() + " No interior .-" + getNoInterior() + ", Referencia .-" + getReferencia();
+    }
+
     public int getId() {
         return id;
     }

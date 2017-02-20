@@ -20,8 +20,6 @@ public class DetalleVenta {
     private int cantidad;
     @Transient
     private float subtotal;
-    @Transient
-    private float iva;
 
     public DetalleVenta() {
         this.setIdDetalle(0);
@@ -107,11 +105,4 @@ public class DetalleVenta {
         this.subtotal = subtotal;
     }
 
-    public float getIva() {
-        return iva;
-    }
-
-    public void setIva(float iva) {
-        this.iva = iva;
-    }
 }

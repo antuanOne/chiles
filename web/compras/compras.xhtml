@@ -162,7 +162,8 @@
                                             <h:inputText value="#{ComprasBean.codigo}" size="6" maxlength="6"
                                                          onkeypress="if (event.keyCode === 13) {
                                                                      changeFocus('form:cantidad');
-                                                                 }">
+                                                                 }"
+                                                    onfocus="clearOnFocus(this)">
                                                 <p:ajax event="change" listener="#{ComprasBean.getProductoXcodigo}"/>
                                             </h:inputText>
                                         </td>
@@ -180,14 +181,15 @@
                                             <h:inputText id="cantidad" value="#{ComprasBean.cantidad}" size="6" maxlength="6"
                                                          onkeypress="if (event.keyCode === 13) {
                                                                      changeFocus('form:precio');
-                                                                 }"/>
+                                                                 }"
+                                                         onfocus="clearOnFocus(this)"/>
                                         </td>
                                         <td>
                                             <strong><h:outputText value="Precio"/></strong><br/>
                                             <h:inputText id="precio" value="#{ComprasBean.precio}" size="6" maxlength="6"
                                                          onkeypress="if (event.keyCode === 13) {
                                                                      changeFocus('form:add');
-                                                                 }"/>
+                                                                 }" onfocus="clearOnFocus(this)"/>
                                         </td>
                                         <td>
                                             <br/>
@@ -215,13 +217,13 @@
                                         <h:outputText value="#{prod.producto.descripcion}" />
                                     </p:column>
                                     <p:column headerText="Precio unitario" width="75">
-                                        <h:outputText value="#{prod.precio}" />
+                                       $ <h:outputText value="#{prod.precio}" />
                                     </p:column>
                                     <p:column headerText="Cantidad" width="75">
                                         <h:outputText value="#{prod.cantidad}" />
                                     </p:column>
                                     <p:column headerText="Subtotal" width="75">
-                                        <h:outputText value="#{prod.subtotal}" />
+                                       $ <h:outputText value="#{prod.subtotal}" />
                                     </p:column>
                                     <p:column width="50">
                                         <p:outputPanel>
@@ -251,7 +253,7 @@
                                 <p:dataTable id="detalleExtra" var="extra" value="#{ComprasBean.compra.listaExtra}"
                                              emptyMessage=""
                                              scrollable="true" scrollHeight="50" >
-                                    <p:column headerText="monto" width="75">
+                                    <p:column headerText="" width="75">
                                         <h:outputText value="#{index + 1}" />
                                     </p:column>
                                     <p:column headerText="ID" width="275">
@@ -274,25 +276,11 @@
                         </td>
                     </tr>
                     <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td><strong><h:outputText value="Subtotal"/></strong></td>
-                        <td><h:outputText id="subtotal" value="#{ComprasBean.compra.subtotalTotal}"/></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td><strong><h:outputText value="IVA"/></strong></td>
-                        <td><h:outputText id="ivatotal" value="#{ComprasBean.compra.ivaTotal}"/></td>
-                    </tr>
-                    <tr>
                         <td height="23"></td>
                         <td></td>
                         <td></td>
                         <td><strong><h:outputText value="Total"/></strong></td>
-                        <td><h:outputText id="total" value="#{ComprasBean.compra.totalGeneral}"/></td>
+                        <td>$ <h:outputText id="total" value="#{ComprasBean.compra.totalGeneral}"/></td>
                     </tr>
 
                 </table>

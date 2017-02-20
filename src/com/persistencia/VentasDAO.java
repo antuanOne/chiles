@@ -27,7 +27,7 @@ public class VentasDAO {
     }
 
     public MasterVenta insertMasterVenta(MasterVenta master){
-       // master.setFechaAlta(new Date());
+        master.setFechaAlta(new Date());
         SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
         Session session = sessionFactory.openSession();
         try {

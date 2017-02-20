@@ -148,13 +148,13 @@
                                         <h:outputText value="#{prod.producto.descripcion}" />
                                     </p:column>
                                     <p:column headerText="Precio unitario" width="75">
-                                        <h:outputText value="#{prod.precio}" />
+                                       $ <h:outputText value="#{prod.precio}" />
                                     </p:column>
                                     <p:column headerText="Cantidad" width="75">
                                         <h:outputText value="#{prod.cantidad}" />
                                     </p:column>
                                     <p:column headerText="Subtotal" width="75">
-                                        <h:outputText value="#{prod.subtotal}" />
+                                       $ <h:outputText value="#{prod.subtotal}" />
                                     </p:column>
                                 </p:dataTable>
 
@@ -167,14 +167,14 @@
                                 <p:dataTable id="detalleExtra" var="extra" value="#{ComprasDetalleBean.compra.listaExtra}"
                                              emptyMessage=""
                                              scrollable="true" scrollHeight="50" >
-                                    <p:column headerText="monto" width="75">
+                                    <p:column headerText="" width="75">
                                         <h:outputText value="#{index + 1}" />
                                     </p:column>
                                     <p:column headerText="ID" width="275">
                                         <h:outputText value="#{extra.concepto}" />
                                     </p:column>
                                     <p:column headerText="monto" width="75">
-                                        <h:outputText value="#{extra.precio}" />
+                                       $ <h:outputText value="#{extra.precio}" />
                                     </p:column>
                                 </p:dataTable>
 
@@ -186,21 +186,14 @@
                         <td></td>
                         <td></td>
                         <td><strong><h:outputText value="Subtotal"/></strong></td>
-                        <td><h:outputText id="subtotal" value="#{ComprasDetalleBean.compra.subtotalTotal}"/></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td><strong><h:outputText value="IVA"/></strong></td>
-                        <td><h:outputText id="ivatotal" value="#{ComprasDetalleBean.compra.ivaTotal}"/></td>
+                        <td>$ <h:outputText id="subtotal" value="#{ComprasDetalleBean.compra.subtotalTotal}"/></td>
                     </tr>
                     <tr>
                         <td height="23"></td>
                         <td></td>
                         <td></td>
                         <td><strong><h:outputText value="Total"/></strong></td>
-                        <td><h:outputText id="total" value="#{ComprasDetalleBean.compra.totalGeneral}"/></td>
+                        <td>$ <h:outputText id="total" value="#{ComprasDetalleBean.compra.totalGeneral}"/></td>
                     </tr>
 
                 </table>

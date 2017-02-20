@@ -8,6 +8,7 @@ import com.pojos.Usuario;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpServletRequest;
 
 /**
  *
@@ -25,6 +26,12 @@ public class GenericBean {
         }
         return usuario;
     }
+
+    public String getContextPath(){
+        HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+        return request.getContextPath();
+    }
+
 
     public void showInfoMessage(String encabezado, String mensaje) {
         FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, encabezado, mensaje);

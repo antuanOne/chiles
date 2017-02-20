@@ -5,6 +5,8 @@
  */
 package com.persistencia;
 
+import com.pojos.Contacto;
+import com.pojos.DireccionProveedor;
 import com.pojos.Proveedor;
 import com.persistencia.utility.HibernateUtil;
 import java.io.Serializable;
@@ -40,6 +42,10 @@ public class ProveedorDAO implements Serializable{
                 session.save(prov);
             } else {
                 Proveedor provTmp = (Proveedor) session.merge(prov);
+                DireccionProveedor dirProv = (DireccionProveedor) session.merge(prov.getDireccion());
+                Contacto contatoTmp = (Contacto) session.merge(prov.getContacto());
+                session.update(contatoTmp);
+                session.update(dirProv);
                 session.update(provTmp);
             }
             session.getTransaction().commit();

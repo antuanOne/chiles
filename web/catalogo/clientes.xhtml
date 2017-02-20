@@ -7,13 +7,13 @@
     <ui:define name="title"><h:outputText value="Proveedores"/></ui:define>
     <ui:define name="content">
         <p:outputPanel autoUpdate="true">
-            <strong><h:outputText value="Proveedores"/></strong>
+            <strong><h:outputText value="Clientes"/></strong>
             <p:separator style="background-color: #F00;border-color:#F00;"/>
             <p:toolbar id="tool">
                 <p:toolbarGroup align="left">  
-                    <p:commandButton value="Nuevo" action="#{ProveedorBean.nuevo}" image="ui-icon-document"/>    
-                    <p:commandButton value="Guardar" action="#{ProveedorBean.guardar}" image="ui-icon ui-icon-disk"/>  
-                    <p:commandButton value="Eliminar" action="#{ProveedorBean.eliminar}" image="ui-icon ui-icon-close"/>
+                    <p:commandButton value="Nuevo" action="#{ClienteBean.nuevo}" image="ui-icon-document"/>    
+                    <p:commandButton value="Guardar" action="#{ClienteBean.guardar}" image="ui-icon ui-icon-disk"/>  
+                    <p:commandButton value="Eliminar" action="#{ClienteBean.eliminar}" image="ui-icon ui-icon-close"/>
                 </p:toolbarGroup>  
                 <p:toolbarGroup align="right">  
                     <p:commandButton value="Salir" action="#{datosHeaderBean.inicio}" image="ui-icon-arrowthickstop-1-e"/>
@@ -23,19 +23,19 @@
                 <tr>
                     <td>
                         <div class="ui-widget-content ui-corner-bottom ui-helper-clearfix ui-shadow">
-                            <p:dataTable id="tabla" var="prov" value="#{ProveedorBean.listProveedores}"
-                                         selection="#{ProveedorBean.proveedorGral}"
-                                         rowKey="#{prov.idProveedor}" emptyMessage="No se encontraron registros"
+                            <p:dataTable id="tabla" var="prov" value="#{ClienteBean.listClientes}"
+                                         selection="#{ClienteBean.clienteGral}"
+                                         rowKey="#{prov.idCliente}" emptyMessage="No se encontraron registros"
                                          selectionMode="single" scrollable="true" scrollHeight="150">
-                                <p:ajax event="rowSelect" listener="#{ProveedorBean.onRowSelect}"/>  
+                                <p:ajax event="rowSelect" listener="#{ClienteBean.onRowSelect}"/>  
                                 <p:column headerText="ID" width="25">  
-                                    <h:outputText value="#{prov.idProveedor}" />  
+                                    <h:outputText value="#{prov.idCliente}" />
                                 </p:column>  
                                 <p:column headerText="Nombre" width="125">  
-                                    <h:outputText value="#{prov.nombre}" />  
+                                    <h:outputText value="#{prov.nombre}" />
                                 </p:column>  
                                 <p:column headerText="Dirección" width="175">  
-                                    <h:outputText value="#{prov.direccion}" />  
+                                    <h:outputText value="#{prov.direccion}" />
                                 </p:column>  
                             </p:dataTable>  
                         </div>
@@ -45,32 +45,64 @@
                     <td align="left" valign="top">
                         <div class="ui-widget-content ui-corner-bottom ui-helper-clearfix ui-shadow">
                             <p:panel id="panel" style="border: 0">
-                                <fieldset style="height:140px">
-                                    <legend>Información del proveedor.</legend>
+                                <fieldset style="height:200px">
+                                    <legend>Información del Cliente.</legend>
                                     <table>
                                         <tr>
                                             <td><h:outputText value="Nombre"/><br/>
-                                                <p:inputText value="#{ProveedorBean.proveedor.nombre}"/>
-                                            </td>
-                                            <td>                  
-                                                <h:outputText value="Direccion"/><br/>
+                                                <p:inputText value="#{ClienteBean.cliente.nombre}"/>
                                             </td>
                                             <td>
+                                            </td>
+                                            <td>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="3">
+                                                <strong><i>Direccion</i></strong>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <h:outputText value="Calle"/><br/>
+                                                <p:inputText value="#{ClienteBean.cliente.direccion.calle}"/>
+                                            </td>
+                                            <td>
+                                                <h:outputText value="Colonia"/><br/>
+                                                <p:inputText value="#{ClienteBean.cliente.direccion.colonia}"/>
+                                            </td>
+                                            <td>
+                                                <h:outputText value="CP"/><br/>
+                                                <p:inputText value="#{ClienteBean.cliente.direccion.cp}"/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <h:outputText value="No exterior"/><br/>
+                                                <p:inputText value="#{ClienteBean.cliente.direccion.noExterior}"/>
+                                            </td>
+                                            <td>
+                                                <h:outputText value="No interio"/><br/>
+                                                <p:inputText value="#{ClienteBean.cliente.direccion.noInterior}"/>
+                                            </td>
+                                            <td>
+                                                <h:outputText value="Referencia"/><br/>
+                                                <p:inputText value="#{ClienteBean.cliente.direccion.referencia}"/>
                                             </td>
                                         </tr>
 
                                         <tr>
                                             <td>
                                                 <h:outputText value="Contacto"/><br/>
-                                                <p:inputText value="#{ProveedorBean.proveedor.contacto}"/>
+                                                <p:inputText value="#{ClienteBean.cliente.contacto}"/>
                                             </td>
                                             <td>
                                                 <h:outputText value="Telefono"/><br/>
-                                                <p:inputText value="#{ProveedorBean.proveedor.telefono}"/>
+                                                <p:inputText value="#{ClienteBean.cliente.telefono}"/>
                                             </td>
                                             <td>
                                                 <h:outputText value="E-mail"/><br/>
-                                                <p:inputText value="#{ProveedorBean.proveedor.email}"/>
+                                                <p:inputText value="#{ClienteBean.cliente.email}"/>
                                             </td>                                            
                                         </tr>
                                     </table>

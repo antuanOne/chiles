@@ -35,8 +35,6 @@ public class DetalleCompra implements Serializable {
     private int cantidad;
     @Transient
     private float subtotal;
-    @Transient
-    final private float iva = (float) 0.16;
 
     public DetalleCompra() {
         this.idDetalle = 0;
@@ -93,10 +91,6 @@ public class DetalleCompra implements Serializable {
     public float getSubtotal() {
         subtotal = cantidad * precio;
         return subtotal;
-    }
-
-    public float getIva() {
-        return iva;
     }
 
     public Producto getProducto() {

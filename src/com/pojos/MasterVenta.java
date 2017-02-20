@@ -11,6 +11,8 @@ public class MasterVenta {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID_VENTA")
     private long idVenta;
+    @Column(name = "CONCECUTIVO")
+    private long concecutivo;
     @Column(name = "FECHA_ALTA")
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date fechaAlta;
@@ -28,8 +30,6 @@ public class MasterVenta {
     private float totalGeneral;
     @Transient
     private float subtotalTotal;
-    @Transient
-    private float ivaTotal;
 
     public MasterVenta() {
         almacen = new Almacen();
@@ -45,14 +45,12 @@ public class MasterVenta {
     public void calculaTotales() {
         setSubtotalTotal(0);
         setTotalGeneral(0);
-        setIvaTotal(0);
         for (DetalleVenta d : getListaDetalle()) {
             d.setSubtotal(d.getCantidad()*d.getPrecio());
             setSubtotalTotal(d.getSubtotal() + getSubtotalTotal());
-            setIvaTotal((getSubtotalTotal() * d.getIva()) + getIvaTotal());
         }
 
-        setTotalGeneral(getIvaTotal() + getSubtotalTotal());
+        setTotalGeneral( getSubtotalTotal());
     }
 
     public Cliente getCliente() {
@@ -111,19 +109,19 @@ public class MasterVenta {
         this.subtotalTotal = subtotalTotal;
     }
 
-    public float getIvaTotal() {
-        return ivaTotal;
-    }
-
-    public void setIvaTotal(float ivaTotal) {
-        this.ivaTotal = ivaTotal;
-    }
-
     public String getEstatus() {
         return estatus;
     }
 
     public void setEstatus(String estatus) {
         this.estatus = estatus;
+    }
+
+    public long getConcecutivo() {
+        return concecutivo;
+    }
+
+    public void setConcecutivo(long concecutivo) {
+        this.concecutivo = concecutivo;
     }
 }

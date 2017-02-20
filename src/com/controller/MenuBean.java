@@ -13,6 +13,7 @@ import java.util.logging.Logger;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpServletRequest;
 
 
 import com.app.GenericBean;
@@ -28,8 +29,12 @@ public class MenuBean extends GenericBean implements Serializable {
 
     private MenuModel model;
     private List<Menu> listaMenu;
+    private String cont ;
 
     public MenuBean() {
+        HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+        cont = request.getContextPath();
+
 
         model = new DefaultMenuModel();
         List<String> accesos = new ArrayList<String>();
@@ -170,6 +175,14 @@ public class MenuBean extends GenericBean implements Serializable {
      */
     public void setListaMenu(List<Menu> listaMenu) {
         this.listaMenu = listaMenu;
+    }
+
+    public String getCont() {
+        return cont;
+    }
+
+    public void setCont(String cont) {
+        this.cont = cont;
     }
 }
 

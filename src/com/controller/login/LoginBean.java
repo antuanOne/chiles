@@ -15,6 +15,7 @@ import java.util.logging.Logger;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpServletRequest;
 
 /**
  *
@@ -41,6 +42,8 @@ public class LoginBean extends GenericBean implements Serializable {
             Usuario usuarioLog = usuarioM.getUsuario(usuarioLogin);
             try {
                 FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("usuario", usuarioLog);
+                HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+                FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("appContextPath", request.getContextPath());
                 FacesContext.getCurrentInstance().getExternalContext().redirect("inicio/home.xhtml");
                 // FacesContext.getCurrentInstance().getExternalContext().redirect(url);
             } catch (IOException ex) {

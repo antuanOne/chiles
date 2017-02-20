@@ -55,10 +55,17 @@
 
                                         <table border="0">
                                             <tr>
-                                                <td><strong><h:outputText value="No entrada"/></strong></td>
-                                                <td>
+                                                <td><strong><h:outputText value="No entrada"/></strong>
+                                                <br/>
                                                     <p:inputText readonly="true" value="#{VentasBean.venta.idVenta}"
                                                                  size="9"/>
+                                                </td>
+                                                <td><strong><h:outputText value="Consecutivo"/></strong>
+                                                    <br/>
+                                                    <p:inputText value="#{VentasBean.venta.concecutivo}" onfocus="clearOnFocus(this)">
+                                                    <p:ajax event="change" listener="#{VentasBean.selectConcecutivo}"/>
+                                                    </p:inputText>
+
                                                 </td>
                                                 <td>
                                                     <strong><h:outputText value="Fecha venta"/></strong>
@@ -85,7 +92,7 @@
                                 </tr>
                                 <tr>
                                     <td colspan="3">
-                                        <fieldset style="height:110px">
+                                        <fieldset style="height:140px">
                                             <legend>Informacion del cliente.</legend>
                                             <table>
                                                 <tr>
@@ -129,7 +136,7 @@
                                         <h:inputText value="#{VentasBean.codigo}" size="6" maxlength="6"
                                                      onkeypress="if (event.keyCode === 13) {
                                                                      changeFocus('form:cantidad');
-                                                                 }">
+                                                                 }" onfocus="clearOnFocus(this)">
                                             <p:ajax event="change" listener="#{VentasBean.getProductoXcodigo}"/>
                                         </h:inputText>
                                     </td>
@@ -151,7 +158,7 @@
                                         <h:inputText id="cantidad" value="#{VentasBean.cantidad}" size="6" maxlength="6"
                                                      onkeypress="if (event.keyCode === 13) {
                                                                      changeFocus('form:precio');
-                                                                 }"/>
+                                                                 }" onfocus="clearOnFocus(this)"/>
                                     </td>
                                     <td>
                                         <strong><h:outputText value="Precio"/></strong><br/>
@@ -186,13 +193,13 @@
                                     <h:outputText value="#{prod.producto.descripcion}" />
                                 </p:column>
                                 <p:column headerText="Precio unitario" width="75">
-                                    <h:outputText value="#{prod.precio}" />
+                                   $ <h:outputText value="#{prod.precio}" />
                                 </p:column>
                                 <p:column headerText="Cantidad" width="75">
                                     <h:outputText value="#{prod.cantidad}" />
                                 </p:column>
                                 <p:column headerText="Subtotal" width="75">
-                                    <h:outputText value="#{prod.subtotal}" />
+                                   $ <h:outputText value="#{prod.subtotal}" />
                                 </p:column>
                                 <p:column width="50">
                                     <p:outputPanel>
@@ -208,25 +215,11 @@
                     </td>
                 </tr>
                 <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td><strong><h:outputText value="Subtotal"/></strong></td>
-                    <td><h:outputText id="subtotal" value="#{VentasBean.venta.subtotalTotal}"/></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td><strong><h:outputText value="IVA"/></strong></td>
-                    <td><h:outputText id="ivatotal" value="#{VentasBean.venta.ivaTotal}"/></td>
-                </tr>
-                <tr>
                     <td height="23"></td>
                     <td></td>
                     <td></td>
                     <td><strong><h:outputText value="Total"/></strong></td>
-                    <td><h:outputText id="total" value="#{VentasBean.venta.totalGeneral}"/></td>
+                    <td>$ <h:outputText id="total" value="#{VentasBean.venta.totalGeneral}"/></td>
                 </tr>
 
             </table>

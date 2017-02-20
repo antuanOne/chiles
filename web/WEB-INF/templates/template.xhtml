@@ -45,6 +45,10 @@
                     var x = document.getElementById(foc);
                     x.focus();
                 }
+
+                function clearOnFocus(element) {
+                    element.value = '';
+                }
             </script>
         </h:head>
         <h:body style="height: 100%;background-color: #292E37">
@@ -63,14 +67,14 @@
                             <td style="width: 180px;border-radius: 9px;background-color: white" align="center">
 
 
-                                <img src="/image/redChilli.jpg" alt="Logo" width="60" height="60"/>
+                                <img src="#{sessionScope.appContextPath}/image/redChilli.jpg" alt="Logo" width="60" height="60"/>
                             </td>
                             <td style="border-radius: 9px">
                                 <table border="0" style="width: 100%">
                                     <tr>
                                         <td>
                                             <strong><h:outputText value="Sistema de Control" style="color:#FFF;font-size: 25px"/></strong><br/>
-                                    <h:outputText value="Chiles selectos La Mayor" style="color:#FFF;font-size: 15px" />
+                                    <h:outputText value="MVW" style="color:#FFF;font-size: 15px" />
                             </td>
                             <td style="width: 80px">
                                 <table>
@@ -82,7 +86,7 @@
                         <p:commandButton icon="ui-icon-gear" title="Settings" />
                         </td>
                         <td>
-                        <p:commandButton value="Salir" />
+                        <p:commandButton value="Salir"  action="#{datosHeaderBean.salir}"/>
                         </td>
                         </tr>
                     </table>
