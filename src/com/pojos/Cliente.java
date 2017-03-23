@@ -29,6 +29,10 @@ public class Cliente {
     @Column(name = "RFC")
     private String rfc;
 
+    public Cliente(){
+        direccion = new DireccionCliente();
+    }
+
     public int getIdCliente() {
         return idCliente;
     }

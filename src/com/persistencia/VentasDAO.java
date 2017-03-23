@@ -4,10 +4,16 @@ import com.app.DateUtils;
 import com.persistencia.utility.HibernateUtil;
 import com.pojos.DetalleVenta;
 import com.pojos.MasterVenta;
+import com.util.Conexion;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
@@ -26,7 +32,7 @@ public class VentasDAO {
 
     }
 
-    public MasterVenta insertMasterVenta(MasterVenta master){
+    public MasterVenta insertMasterVenta(MasterVenta master) {
         master.setFechaAlta(new Date());
         SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
         Session session = sessionFactory.openSession();
@@ -63,7 +69,7 @@ public class VentasDAO {
             session.update(ventaTemp);
             for (DetalleVenta dt : ventaTemp.getListaDetalle()) {
                 session.save(dt);
-                InventarioDAO.reduceInventario(session, ventaTemp.getAlmacen().getIdAlmacen(),
+                InventarioDAO.aumentaInventario(session, ventaTemp.getAlmacen().getIdAlmacen(),
                         dt.getProducto().getIdProducto(), dt.getCantidad());
 
             }
@@ -75,7 +81,6 @@ public class VentasDAO {
             session.close();
         }
     }
-
 
 
     public List<MasterVenta> trarVentasPorAlmacenFechas(Date inicio, Date fin, long almacen) throws Exception {
@@ -94,4 +99,56 @@ public class VentasDAO {
         return tmpList;
 
     }
+
+    public List<MasterVenta> trarVentasPorAlmacenFechas1(Date inicio, Date fin, long almacen) throws Exception {
+        List<MasterVenta> lista = new ArrayList<MasterVenta>();
+        Connection cn = null;
+        PreparedStatement pState = null;
+        ResultSet rSet = null;
+        try {
+
+            cn = Conexion.obtenerConexion();
+
+            String query = "select * from VENTA_MASTER where FECHA_ALTA between ? and ?";
+
+            String fechaInicio = DateUtils.getTextFecha(inicio, "yyyyMMdd") + "  00:00:00:000";
+            String fechaFin = DateUtils.getTextFecha(fin, "yyyyMMdd") + " 23:59:59:999";
+
+            pState = cn.prepareStatement(query);
+            pState.setString(1, fechaInicio);
+            pState.setString(2, fechaFin);
+            rSet = pState.executeQuery();
+            while (rSet.next()) {
+                MasterVenta venta = new MasterVenta();
+                venta.setEstatus(rSet.getString("ESTATUS"));
+                String fecha1 = rSet.getString("FECHA_ALTA_SYS");
+                String fecha2 = rSet.getString("FECHA_ALTA");
+                venta.setFechaAltaSys(rSet.getDate("FECHA_ALTA_SYS"));
+                venta.setFechaAlta(rSet.getDate("FECHA_ALTA"));
+                venta.getAlmacen().setIdAlmacen(rSet.getInt("ID_ALMACEN"));
+                venta.getCliente().setIdCliente(rSet.getInt("ID_CLIENTE"));
+                venta.setIdVenta(rSet.getLong("ID_VENTA"));
+                lista.add(venta);
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(VentasDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(VentasDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            if (rSet != null) {
+                rSet.close();
+            }
+            if (pState != null) {
+                pState.close();
+            }
+            if (cn != null) {
+                cn.close();
+            }
+        }
+        return lista;
+
+    }
+
+
 }

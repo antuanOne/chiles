@@ -59,6 +59,8 @@
                                                     <f:selectItems value="#{UsuAplicacionBean.listaAlmacen}" var="alRepDia" itemValue="#{alRepDia.idAlmacen}" itemLabel="#{alRepDia.nombreAlmacen}"/>  
                                                   
                                                 </p:selectOneMenu>
+                                                <h:inputHidden value="#{UsuAplicacionBean.usuarioSeg.idUsuario}"/>
+                                                <h:inputHidden value="#{UsuAplicacionBean.usuarioSeg.fecha_Alta}"/>
                                             </td>
                                         </tr>
                                         <tr>

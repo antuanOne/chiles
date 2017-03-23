@@ -4,7 +4,6 @@
     <CLASSES>
       <root url="jar://$PROJECT_DIR$/lib/jstl-1.1.0.jar!/" />
       <root url="jar://$PROJECT_DIR$/lib/javax.faces-2.2.1.jar!/" />
-      <root url="jar://$PROJECT_DIR$/lib/SQLServerDriver/sqljdbc4.jar!/" />
       <root url="jar://$PROJECT_DIR$/lib/hibernate/antlr-2.7.7.jar!/" />
       <root url="jar://$PROJECT_DIR$/lib/hibernate/dom4j-1.6.1.jar!/" />
       <root url="jar://$PROJECT_DIR$/lib/hibernate/hibernate-commons-annotations-4.0.5.Final.jar!/" />
@@ -16,6 +15,7 @@
       <root url="jar://$PROJECT_DIR$/lib/hibernate/jboss-logging-annotations-1.2.0.Beta1.jar!/" />
       <root url="jar://$PROJECT_DIR$/lib/hibernate/jboss-transaction-api_1.2_spec-1.0.0.Final.jar!/" />
       <root url="jar://$PROJECT_DIR$/lib/primefaces/primefaces-5.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/SQLServerDriver/sqljdbc4-2.0.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

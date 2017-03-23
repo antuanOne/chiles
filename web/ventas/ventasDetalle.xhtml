@@ -11,14 +11,18 @@
             <p:separator style="background-color: #F00;border-color:#F00;"/>
             <p:toolbar id="tool">
                 <p:toolbarGroup align="left">
-                    <p:commandButton value="Nueva venta" action="#{VentasDetalleBean.nuevaVenta}" image="ui-icon-docuent"/>
-                    <p:commandButton value="Cancela venta" action="#{VentasDetalleBean.cancelaVenta}" image="ui-icon-docuent"/>
+                    <p:commandButton value="Nueva venta" action="#{VentasDetalleBean.nuevaVenta}"
+                                     image="ui-icon-document"/>
+                    <p:commandButton value="Cancela venta" action="#{VentasDetalleBean.cancelaVenta}"
+                                     image="ui-icon-cancel"/>
                 </p:toolbarGroup>
-                <p:toolbarGroup align="right"><p:commandButton value="Salir" action="#{datosHeaderBean.inicio}" image="ui-icon-arrowthickstop-1-e"/>
+                <p:toolbarGroup align="right"><p:commandButton value="Salir" action="#{datosHeaderBean.inicio}"
+                                                               image="ui-icon-arrowthickstop-1-e"/>
                 </p:toolbarGroup>
             </p:toolbar>
             <p:outputPanel id="panel">
-                <h:outputText value="CANCELADO" style="color: red;font-size: xx-large" rendered="#{VentasDetalleBean.cancelaEtiquta}"/>
+                <h:outputText value="CANCELADO" style="color: red;font-size: xx-large"
+                              rendered="#{VentasDetalleBean.cancelaEtiquta}"/>
                 <table width="900" border="0">
                     <tr>
                         <td width="211"></td>
@@ -31,7 +35,7 @@
                         <td colspan="5">
                             <fieldset>
                                 <table border="0">
-                                    <tr >
+                                    <tr>
                                         <td colspan="2">
                                         </td>
                                         <td width="144"></td>
@@ -39,49 +43,47 @@
                                         <td width="194"></td>
                                     </tr>
                                     <tr>
-                                        <td width="211" colspan="2"><strong><h:outputText value="Almacén"/></strong><br/>
+                                        <td width="211" colspan="2"><strong><h:outputText
+                                                value="Almacén"/></strong><br/>
                                             <p:outputLabel value="#{VentasDetalleBean.venta.almacen.nombreAlmacen}"/>
                                         </td>
-                                        <td width="118" colspan="3">
 
-                                            <table border="0">
-                                                <tr>
-                                                    <td><strong><h:outputText value="No entrada"/></strong>
-                                                        <br/>
-                                                        <p:inputText readonly="true" value="#{VentasDetalleBean.venta.idVenta}"
-                                                                     size="9"/>
-                                                    </td>
-                                                    <td><strong><h:outputText value="Consecutivo"/></strong>
-                                                        <br/>
-                                                        <p:inputText readonly="true" value="#{VentasDetalleBean.venta.concecutivo}"/>
-                                                    </td>
-                                                    <td>
-                                                        <strong><h:outputText value="Fecha compra"/></strong>
-                                                    </td>
-                                                    <td>
-                                                        <p:calendar value="#{VentasDetalleBean.venta.fechaAlta}" size="8"
-                                                                    pattern="dd-MM-yyyy" readonly="true" />
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td></td>
-                                                    <td>
-                                                    </td>
-                                                    <td>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td></td>
-                                                    <td>
-                                                    </td>
-                                                    <td>
-                                                    </td>
-                                                    <td>
-                                                    </td>
-                                                </tr>
-                                            </table>
 
+                                        <td><strong><h:outputText value="No entrada"/></strong>
+                                            <br/>
+                                            <p:inputText readonly="true" value="#{VentasDetalleBean.venta.idVenta}"
+                                                         size="9"/>
                                         </td>
+                                        <td><strong><h:outputText value="Consecutivo"/></strong>
+                                            <br/>
+                                            <p:inputText readonly="true"
+                                                         value="#{VentasDetalleBean.venta.concecutivo}"/>
+                                        </td>
+                                        <td>
+                                            <strong><h:outputText value="Fecha compra"/></strong>
+                                            <br/>
+                                            <p:calendar value="#{VentasDetalleBean.venta.fechaAlta}" size="8"
+                                                        pattern="dd-MM-yyyy" readonly="true"/>
+                                        </td>
+
+
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td>
+                                            <strong><h:outputText value="Factura Cliente"/></strong>
+                                            <br/>
+                                            <p:inputText readonly="true" value="#{VentasDetalleBean.venta.facCliente}"/>
+                                        </td>
+                                        <td>
+                                            <strong><h:outputText value="Tipo de Pago"/></strong>
+                                            <br/>
+                                            <p:inputText value="#{VentasDetalleBean.tipoPago.descipcion}"/>
+                                        </td>
+
+                                        <td></td>
+                                        <td></td>
                                     </tr>
                                     <tr>
                                         <td colspan="5">
@@ -91,31 +93,38 @@
                                                     <tr>
                                                         <td colspan="2">
                                                             <label class="outputText">Nombre</label><br/>
-                                                            <h:outputText value="#{VentasDetalleBean.venta.cliente.nombre}"/>
+                                                            <h:outputText
+                                                                    value="#{VentasDetalleBean.venta.cliente.nombre}"/>
                                                         </td>
                                                         <td colspan="2">
                                                             <label class="outputText">Nombre Cliente</label><br/>
-                                                            <h:outputText value="#{VentasDetalleBean.venta.cliente.nombreCliente}"/>
+                                                            <h:outputText
+                                                                    value="#{VentasDetalleBean.venta.cliente.nombreCliente}"/>
                                                         </td>
                                                         <td></td>
                                                     </tr>
                                                     <tr>
                                                         <td colspan="4">
                                                             <label class="outputText">Direccion</label><br/>
-                                                            <h:outputText value="#{VentasDetalleBean.venta.cliente.direccion}"/>
+                                                            <h:outputText
+                                                                    value="#{VentasDetalleBean.venta.cliente.direccion}"/>
                                                         </td>
                                                     </tr>
                                                     <tr>
                                                         <td>
                                                             <label class="outputText">Contacto</label><br/>
-                                                            <h:outputText value="#{VentasDetalleBean.venta.cliente.contacto}"/>
+                                                            <h:outputText
+                                                                    value="#{VentasDetalleBean.venta.cliente.contacto}"/>
                                                         </td>
                                                         <td>
                                                             <label class="outputText">Telefono</label><br/>
-                                                            <h:outputText value="#{VentasDetalleBean.venta.cliente.contacto}"/>
+                                                            <h:outputText
+                                                                    value="#{VentasDetalleBean.venta.cliente.contacto}"/>
                                                         </td>
                                                         <td><label class="outputText">Email</label><br/>
-                                                            <h:outputText value="#{VentasDetalleBean.venta.cliente.contacto}"/></td>
+                                                            <h:outputText
+                                                                    value="#{VentasDetalleBean.venta.cliente.contacto}"/>
+                                                        </td>
                                                         <td></td>
                                                         <td></td>
                                                     </tr>
@@ -131,21 +140,21 @@
                         <td colspan="5">
                             <fieldset>
                                 <p:dataTable id="detalle" var="prod" value="#{VentasDetalleBean.venta.listaDetalle}"
-                                             scrollable="true" scrollHeight="200" >
+                                             scrollable="true" scrollHeight="200">
                                     <p:column headerText="ID" width="75">
-                                        <h:outputText value="#{prod.producto.idProducto}" />
+                                        <h:outputText value="#{prod.producto.idProducto}"/>
                                     </p:column>
                                     <p:column headerText="Descripción" width="275">
-                                        <h:outputText value="#{prod.producto.descripcion}" />
+                                        <h:outputText value="#{prod.producto.descripcion}"/>
                                     </p:column>
                                     <p:column headerText="Precio unitario" width="75">
-                                       $ <h:outputText value="#{prod.precio}" />
+                                        $ <h:outputText value="#{prod.precio}"/>
                                     </p:column>
                                     <p:column headerText="Cantidad" width="75">
-                                        <h:outputText value="#{prod.cantidad}" />
+                                        <h:outputText value="#{prod.cantidad}"/>
                                     </p:column>
                                     <p:column headerText="Subtotal" width="75">
-                                       $ <h:outputText value="#{prod.subtotal}" />
+                                        $ <h:outputText value="#{prod.subtotal}"/>
                                     </p:column>
                                 </p:dataTable>
 

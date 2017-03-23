@@ -27,6 +27,8 @@
     <mapping class="com.pojos.MasterVenta"/>
     <mapping class="com.pojos.DetalleVenta"/>
     <mapping class="com.pojos.Usuario"/>
+    <mapping class="com.pojos.PagoCompra"/>
+    <mapping class="com.pojos.TipoPago"/>
     
   </session-factory>
 </hibernate-configuration>

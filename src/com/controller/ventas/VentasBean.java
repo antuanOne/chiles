@@ -21,13 +21,14 @@ public class VentasBean  extends GenericBean implements Serializable {
     private List<Almacen> almacenList;
     private List<Cliente> clienteList;
     private List<Producto> productoList;
+    private List<TipoPago> tipoPagoLst;
     private MasterVenta venta;
     private Cliente clienteInfo;
     private String codigo;
     private Producto productoBusqueda;
     private long id_producto;
-    private int cantidad;
-    private int existencia;
+    private float cantidad;
+    private float existencia;
     private float iva = 0.16f;
     private float precio;
     private DetalleVenta prodABorrar;
@@ -38,6 +39,7 @@ public class VentasBean  extends GenericBean implements Serializable {
     private final AlmacenDAO almacenDAO = new AlmacenDAO();
     private final InventarioDAO inventarioDAO = new InventarioDAO();
     private final VentasDAO ventasDAO = new VentasDAO();
+    private final TipoPagoDAO tipoPagoDAO = new TipoPagoDAO();
 
     public VentasBean() {
         nuevo();
@@ -45,11 +47,15 @@ public class VentasBean  extends GenericBean implements Serializable {
 
     final public void nuevo(){
         venta = new MasterVenta();
+        venta.setFechaAlta(new Date());
+        venta.setFechaAltaSys(new Date());
+        venta.setTipoPago("00");
         venta.getAlmacen().setIdAlmacen(getUsuario().getAlmacen().getIdAlmacen());
         try {
             setClienteList(clienteDAO.getClientes());
             setProductoList(productoDAO.getProductos());
             setAlmacenList(almacenDAO.getAlmacenes());
+            tipoPagoLst = tipoPagoDAO.getTipoPagos();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -64,7 +70,7 @@ public class VentasBean  extends GenericBean implements Serializable {
         getVenta().setListaDetalle(new ArrayList<>());
     }
 
-    public void selectConcecutivo() {
+    public void selectSomething() {
         System.out.println("");
     }
 
@@ -75,8 +81,8 @@ public class VentasBean  extends GenericBean implements Serializable {
 
     public void getProductoXcodigo() {
         productoBusqueda = (productoDAO.getProductoByCcodigo(codigo));
-        existencia = inventarioDAO.getExistenciaProducto(venta.getAlmacen().getIdAlmacen(),id_producto);
-
+        existencia = inventarioDAO.getExistenciaProducto(venta.getAlmacen().getIdAlmacen(),productoBusqueda.getIdProducto());
+        //precio = productoBusqueda.getPrecio();
         if (productoBusqueda == null) {
             showErrorMessage(msgHeader, "El codigo no coincide con ningun producto, vuelva a intentarlo");
             return;
@@ -96,20 +102,26 @@ public class VentasBean  extends GenericBean implements Serializable {
             return;
         }
 
+        if (existencia == 0) {
+            showInfoMessage(msgHeader, "No tiene existencia del producto, favor de verificar");
+            return;
+        }
+
         DetalleVenta detalleVenta= new DetalleVenta();
         detalleVenta.setProducto(productoBusqueda);
 
-        boolean prodPresente = venta.getListaDetalle().contains(detalleVenta);
-        if (!prodPresente) {
-            detalleVenta.setPrecio(precio);
-            detalleVenta.setCantidad(cantidad);
-            venta.getListaDetalle().add(detalleVenta);
-        } else {
-            detalleVenta = venta.getListaDetalle().get(venta.getListaDetalle().indexOf(detalleVenta));
+//        boolean prodPresente = venta.getListaDetalle().contains(detalleVenta);
+//        if (!prodPresente) {
+//            detalleVenta.setPrecio(precio);
+//            detalleVenta.setCantidad(cantidad);
+//            venta.getListaDetalle().add(detalleVenta);
+//        } else {
+            //detalleVenta = venta.getListaDetalle().get(venta.getListaDetalle().indexOf(detalleVenta));
             detalleVenta.setPrecio(precio);
             cantidad = cantidad + detalleVenta.getCantidad();
             detalleVenta.setCantidad(cantidad);
-        }
+            venta.getListaDetalle().add(detalleVenta);
+//        }
 
         codigo = "";
         venta.calculaTotales();
@@ -128,7 +140,8 @@ public class VentasBean  extends GenericBean implements Serializable {
 
         try {
             productoBusqueda = productoDAO.getProductoById(id_producto);
-            existencia = inventarioDAO.getExistenciaProducto(venta.getAlmacen().getIdAlmacen(),id_producto);
+            existencia = inventarioDAO.getExistenciaProducto(venta.getAlmacen().getIdAlmacen(), id_producto);
+            //precio = productoBusqueda.getPrecio();
             codigo = productoBusqueda.getCodigo();
         } catch (Exception ex) {
             Logger.getLogger(VentasBean.class.getName()).log(Level.SEVERE, null, ex);
@@ -207,11 +220,11 @@ public class VentasBean  extends GenericBean implements Serializable {
         this.id_producto = id_producto;
     }
 
-    public int getCantidad() {
+    public float getCantidad() {
         return cantidad;
     }
 
-    public void setCantidad(int cantidad) {
+    public void setCantidad(float cantidad) {
         this.cantidad = cantidad;
     }
 
@@ -223,11 +236,11 @@ public class VentasBean  extends GenericBean implements Serializable {
         this.precio = precio;
     }
 
-    public int getExistencia() {
+    public float getExistencia() {
         return existencia;
     }
 
-    public void setExistencia(int existencia) {
+    public void setExistencia(float existencia) {
         this.existencia = existencia;
     }
 
@@ -237,5 +250,13 @@ public class VentasBean  extends GenericBean implements Serializable {
 
     public void setProdABorrar(DetalleVenta prodABorrar) {
         this.prodABorrar = prodABorrar;
+    }
+
+    public List<TipoPago> getTipoPagoLst() {
+        return tipoPagoLst;
+    }
+
+    public void setTipoPagoLst(List<TipoPago> tipoPagoLst) {
+        this.tipoPagoLst = tipoPagoLst;
     }
 }

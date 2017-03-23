@@ -2,7 +2,8 @@ package com.controller.compras;
 
 import com.app.GenericBean;
 import com.persistencia.ComprasDAO;
-import com.pojos.*;
+import com.persistencia.CuentasPorPagarDAO;
+import com.pojos.MasterCompra;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
@@ -13,7 +14,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- *
  * @author antuan.yanez
  */
 @ManagedBean(name = "ComprasDetalleBean")
@@ -26,6 +26,7 @@ public class ComprasDetalleBean extends GenericBean implements Serializable {
     private boolean cancelaEtiquta = false;
 
     final private ComprasDAO comprasDAO = new ComprasDAO();
+    final private CuentasPorPagarDAO cuentasPorPagarDAO = new CuentasPorPagarDAO();
 
     public ComprasDetalleBean() {
         if (!FacesContext.getCurrentInstance().isPostback()) {
@@ -35,7 +36,7 @@ public class ComprasDetalleBean extends GenericBean implements Serializable {
             try {
                 compra = comprasDAO.getCompraById(id);
                 compra.calculaTotales();
-                if(compra.getEstatus().toUpperCase().equals('C')){
+                if (compra.getEstatus().toUpperCase().equals("C")) {
                     cancelaEtiquta = true;
                 }
             } catch (Exception e) {
@@ -44,7 +45,7 @@ public class ComprasDetalleBean extends GenericBean implements Serializable {
         }
     }
 
-    public void nuevaCompra(){
+    public void nuevaCompra() {
         try {
             FacesContext.getCurrentInstance().getExternalContext().redirect("../compras/compras.xhtml");
         } catch (Exception ex) {
@@ -54,6 +55,12 @@ public class ComprasDetalleBean extends GenericBean implements Serializable {
 
     public void cancelaCompra() {
         try {
+            if (compra.isCredito()) {
+                if (!cuentasPorPagarDAO.getPagosCompra(compra.getIdCompra()).isEmpty()) {
+                    showErrorMessage(msgHeader, "La compra no puede cancelarse ya que tiene pagos aplicados");
+                    return;
+                }
+            }
             comprasDAO.cancelaCompra(compra);
             setCancelaEtiquta(true);
         } catch (Exception e) {

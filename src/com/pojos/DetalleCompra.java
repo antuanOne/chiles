@@ -32,7 +32,7 @@ public class DetalleCompra implements Serializable {
     @Column(name = "PRECIO")
     private float precio;
     @Column(name = "CANTIDAD")
-    private int cantidad;
+    private float cantidad;
     @Transient
     private float subtotal;
 
@@ -80,11 +80,11 @@ public class DetalleCompra implements Serializable {
         this.idDetalle = idDetalle;
     }
 
-    public int getCantidad() {
+    public float getCantidad() {
         return cantidad;
     }
 
-    public void setCantidad(int cantidad) {
+    public void setCantidad(float cantidad) {
         this.cantidad = cantidad;
     }
 

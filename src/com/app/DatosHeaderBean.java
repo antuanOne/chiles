@@ -7,6 +7,7 @@ import java.util.logging.Logger;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpServletRequest;
 
 
 @ManagedBean(name = "datosHeaderBean")
@@ -15,8 +16,12 @@ public class DatosHeaderBean extends GenericBean implements Serializable {
 
     public void salir() {
         try {
+
             FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
-            FacesContext.getCurrentInstance().getExternalContext().redirect("/login.xhtml");
+            HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+            String context =  request.getContextPath();
+
+            FacesContext.getCurrentInstance().getExternalContext().redirect(context + "/login.xhtml");
 
             FacesContext.getCurrentInstance().getExternalContext().getSession(true);
         } catch (IOException ex) {

@@ -16,6 +16,9 @@ public class MasterVenta {
     @Column(name = "FECHA_ALTA")
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date fechaAlta;
+    @Column(name = "FECHA_ALTA_SYS")
+    @Temporal(javax.persistence.TemporalType.DATE)
+    private Date fechaAltaSys;
     @OneToOne
     @JoinColumn(name = "ID_CLIENTE")
     private Cliente cliente;
@@ -26,6 +29,10 @@ public class MasterVenta {
     private String estatus = "A";
     @OneToMany(mappedBy="venta",fetch=FetchType.EAGER)//,cascade = CascadeType.ALL)
     private List<DetalleVenta> listaDetalle;
+    @Column(name = "FAC_CLIENTE")
+    private String facCliente;
+    @Column(name = "TIPO_PAGO")
+    private String tipoPago;
     @Transient
     private float totalGeneral;
     @Transient
@@ -123,5 +130,29 @@ public class MasterVenta {
 
     public void setConcecutivo(long concecutivo) {
         this.concecutivo = concecutivo;
+    }
+
+    public Date getFechaAltaSys() {
+        return fechaAltaSys;
+    }
+
+    public void setFechaAltaSys(Date fechaAltaSys) {
+        this.fechaAltaSys = fechaAltaSys;
+    }
+
+    public String getFacCliente() {
+        return facCliente;
+    }
+
+    public void setFacCliente(String facCliente) {
+        this.facCliente = facCliente;
+    }
+
+    public String getTipoPago() {
+        return tipoPago;
+    }
+
+    public void setTipoPago(String tipoPago) {
+        this.tipoPago = tipoPago;
     }
 }

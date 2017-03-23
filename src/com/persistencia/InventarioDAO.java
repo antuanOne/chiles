@@ -9,7 +9,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
 public class InventarioDAO {
-    public static void reduceInventario(Session session, long idAlmacen, long idProducto, int cantidad) {
+    public static void reduceInventario(Session session, long idAlmacen, long idProducto, float cantidad) {
         Query query = session.createQuery("From INVENTARIO_MASTER where ID_PRODUCTO = :param1 and ID_ALMACEN =:param2");
         query.setParameter("param1", idProducto);
         query.setParameter("param2", idAlmacen);
@@ -19,7 +19,7 @@ public class InventarioDAO {
         session.saveOrUpdate(inventory);
     }
 
-    public static void aumentaInventario(Session session, int idAlmacen, long idProducto, int cantidad) {
+    public static void aumentaInventario(Session session, int idAlmacen, long idProducto, float cantidad) {
         Query query = session.createQuery("From INVENTARIO_MASTER where ID_PRODUCTO = :param1 and ID_ALMACEN =:param2");
         query.setParameter("param1", idProducto);
         query.setParameter("param2", idAlmacen);
@@ -36,7 +36,7 @@ public class InventarioDAO {
         session.saveOrUpdate(inventory);
     }
 
-    public static int getExistenciaProducto(long idAlmacen, long idProducto) {
+    public static float getExistenciaProducto(long idAlmacen, long idProducto) {
         SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
         Session session = sessionFactory.openSession();
         Query query = session.createQuery("From INVENTARIO_MASTER where ID_PRODUCTO = :param1 and ID_ALMACEN =:param2");

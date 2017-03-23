@@ -62,7 +62,7 @@ public class ComprasDAO implements Serializable{
         return master;
     }
 
-    public void cancelaCompra(MasterCompra compra) throws Exception {
+       public void cancelaCompra(MasterCompra compra) throws Exception {
 
         SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
         Session session = sessionFactory.openSession();
@@ -85,6 +85,43 @@ public class ComprasDAO implements Serializable{
             session.close();
         }
     }
+
+    public void liquidaCompra(MasterCompra compra) throws Exception {
+
+        SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+        Session session = sessionFactory.openSession();
+        try {
+            session.beginTransaction();
+            MasterCompra compraTemp = (MasterCompra) session.get(MasterCompra.class, compra.getIdCompra());
+            compraTemp.setEstatus("A");
+            session.update(compraTemp);
+            session.getTransaction().commit();
+        } catch (Exception ex) {
+            session.getTransaction().rollback();
+            Logger.getLogger(ComprasDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            session.close();
+        }
+    }
+
+    public void regresarCompra(MasterCompra compra) throws Exception {
+
+        SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+        Session session = sessionFactory.openSession();
+        try {
+            session.beginTransaction();
+            MasterCompra compraTemp = (MasterCompra) session.get(MasterCompra.class, compra.getIdCompra());
+            compraTemp.setEstatus("P");
+            session.update(compraTemp);
+            session.getTransaction().commit();
+        } catch (Exception ex) {
+            session.getTransaction().rollback();
+            Logger.getLogger(ComprasDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            session.close();
+        }
+    }
+
 
     public List<MasterCompra> trarComprasPorAlmacenFechas(Date inicio, Date fin, long almacen) throws Exception {
 

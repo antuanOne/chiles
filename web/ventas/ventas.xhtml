@@ -36,7 +36,7 @@
                     <td colspan="5">
                         <fieldset>
                             <table border="0">
-                                <tr >
+                                <tr>
                                     <td colspan="2">
                                     </td>
                                     <td width="144"></td>
@@ -45,53 +45,105 @@
                                 </tr>
                                 <tr>
                                     <td width="211" colspan="2"><strong><h:outputText value="Almacen"/></strong><br/>
-                                        <p:selectOneMenu value="#{VentasBean.venta.almacen.idAlmacen}" style="width: 250px">
-                                            <f:selectItem itemLabel="Seleccione un almacen" itemValue="0" />
-                                            <f:selectItems value="#{VentasBean.almacenList}" var="al" itemValue="#{al.idAlmacen}" itemLabel="#{al.nombreAlmacen}"/>
+                                        <p:selectOneMenu value="#{VentasBean.venta.almacen.idAlmacen}"
+                                                         style="width: 250px">
+                                            <f:selectItem itemLabel="Seleccione un almacen" itemValue="0"/>
+                                            <f:selectItems value="#{VentasBean.almacenList}" var="al"
+                                                           itemValue="#{al.idAlmacen}" itemLabel="#{al.nombreAlmacen}"/>
                                             <p:ajax event="change" listener="#{VentasBean.seleccionaAlmacen}"/>
                                         </p:selectOneMenu>
                                     </td>
-                                    <td width="118" colspan="3" rowspan="2">
-
-                                        <table border="0">
-                                            <tr>
-                                                <td><strong><h:outputText value="No entrada"/></strong>
-                                                <br/>
-                                                    <p:inputText readonly="true" value="#{VentasBean.venta.idVenta}"
-                                                                 size="9"/>
-                                                </td>
-                                                <td><strong><h:outputText value="Consecutivo"/></strong>
-                                                    <br/>
-                                                    <p:inputText value="#{VentasBean.venta.concecutivo}" onfocus="clearOnFocus(this)">
-                                                    <p:ajax event="change" listener="#{VentasBean.selectConcecutivo}"/>
-                                                    </p:inputText>
-
-                                                </td>
-                                                <td>
-                                                    <strong><h:outputText value="Fecha venta"/></strong>
-                                                </td>
-                                                <td>
-                                                    <p:calendar disabled="true" value="#{VentasBean.venta.fechaAlta}" size="8"
-                                                                pattern="dd-MM-yyyy" />
-                                                </td>
-                                            </tr>
-                                        </table>
-
+                                    <td>
+                                    </td>
+                                    <td>
+                                        <strong><h:outputText value="No entrada"/></strong>
+                                        <br/>
+                                        <p:inputText readonly="true" value="#{VentasBean.venta.idVenta}"
+                                                     size="9"/>
+                                    </td>
+                                    <td>
+                                        <strong><h:outputText value="Consecutivo"/></strong>
+                                        <br/>
+                                        <p:inputText value="#{VentasBean.venta.concecutivo}"
+                                                     onkeypress="if (event.keyCode === 13) {
+                                                                     changeFocus('form:codigoPago');
+                                                                 }" onfocus="clearOnFocus(this)">
+                                            <p:ajax event="change" listener="#{VentasBean.selectSomething}"/>
+                                        </p:inputText>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td colspan="2"><strong><h:outputText value="Cliente"/></strong><br/>
-                                        <p:selectOneMenu value="#{VentasBean.venta.cliente.idCliente}" style="width: 250px"
+                                        <p:selectOneMenu value="#{VentasBean.venta.cliente.idCliente}"
+                                                         style="width: 250px"
                                                          filter="true" filterMatchMode="contains"
                                                          valueChangeListener="#{VentasBean.seleccionaCliente}">
-                                            <f:selectItem itemLabel="Seleccione un cliente" itemValue="0" />
-                                            <f:selectItems value="#{VentasBean.clienteList}" var="provee" itemValue="#{provee.idCliente}" itemLabel="#{provee.nombre} - #{provee.nombreCliente}"/>
+                                            <f:selectItem itemLabel="Seleccione un cliente" itemValue="0"/>
+                                            <f:selectItems value="#{VentasBean.clienteList}" var="provee"
+                                                           itemValue="#{provee.idCliente}"
+                                                           itemLabel="#{provee.nombre} - #{provee.nombreCliente}"/>
                                             <p:ajax event="change"/>
                                         </p:selectOneMenu>
                                     </td>
+                                    <td>
+                                        <table>
+                                            <tr>
+                                                <td colspan="2">
+                                                    <strong><h:outputText value="Tipo de Pago"/></strong>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <p:inputText id="codigoPago" value="#{VentasBean.venta.tipoPago}"
+                                                                 onkeypress="if (event.keyCode === 13) {
+                                                                     changeFocus('form:facturaCliente');
+                                                                 }" onfocus="clearOnFocus(this)"
+                                                                 style="width: 20px">
+                                                        <p:ajax event="change"
+                                                                listener="#{VentasBean.selectSomething}"/>
+                                                    </p:inputText>
+                                                </td>
+                                                <td>
+                                                    <p:selectOneMenu value="#{VentasBean.venta.tipoPago}"
+                                                                     style="width: 150px"
+                                                                     filter="true" filterMatchMode="contains"
+                                                                     valueChangeListener="#{VentasBean.selectSomething}">
+                                                        <f:selectItem itemLabel="Seleccione un tipo de pago"
+                                                                      itemValue="0"/>
+                                                        <f:selectItems value="#{VentasBean.tipoPagoLst}" var="pago"
+                                                                       itemValue="#{pago.codigo}"
+                                                                       itemLabel="#{pago.descipcion}"/>
+                                                        <p:ajax event="change"/>
+                                                    </p:selectOneMenu>
+                                                </td>
+                                            </tr>
+
+                                        </table>
+                                    </td>
+                                    <td>
+                                        <strong><h:outputText value="Factura Cliente"/></strong>
+                                        <p:inputText id="facturaCliente" value="#{VentasBean.venta.facCliente}"
+                                                     onkeypress="if (event.keyCode === 13) {
+                                                                     changeFocus('form:fechaAlta_input');
+                                                                 }" onfocus="clearOnFocus(this)">
+                                            <p:ajax event="change" listener="#{VentasBean.selectSomething}"/>
+                                        </p:inputText>
+                                    </td>
+                                    <td>
+                                        <strong><h:outputText value="Fecha venta"/></strong>
+                                        <br/>
+                                        <p:calendar id="fechaAlta" value="#{VentasBean.venta.fechaAlta}" size="8"
+                                                    pattern="dd-MM-yyyy" showOn="button"
+                                                    onkeypress="if (event.keyCode === 13) {
+                                                                     changeFocus('form:codigoId');
+                                                                 }" onfocus="clearOnFocus(this)">
+                                        <p:ajax event="change"
+                                                listener="#{VentasBean.selectSomething}"/>
+                                        </p:calendar>
+                                    </td>
                                 </tr>
                                 <tr>
-                                    <td colspan="3">
+                                    <td colspan="5">
                                         <fieldset style="height:140px">
                                             <legend>Informacion del cliente.</legend>
                                             <table>
@@ -133,7 +185,7 @@
                                 <tr>
                                     <td>
                                         <strong><h:outputText value="Codigo"/></strong><br/>
-                                        <h:inputText value="#{VentasBean.codigo}" size="6" maxlength="6"
+                                        <h:inputText id="codigoId" value="#{VentasBean.codigo}" size="6" maxlength="6"
                                                      onkeypress="if (event.keyCode === 13) {
                                                                      changeFocus('form:cantidad');
                                                                  }" onfocus="clearOnFocus(this)">
@@ -144,15 +196,18 @@
                                         <strong><h:outputText value="Producto"/></strong><br/>
                                         <p:selectOneMenu id="Producto" value="#{VentasBean.id_producto}"
                                                          filter="true" filterMatchMode="contains"
-                                                         valueChangeListener="#{VentasBean.seleccionaProducto}" style="width: 250px">
-                                            <f:selectItem itemLabel="Seleccione un producto" itemValue="0" />
-                                            <f:selectItems value="#{VentasBean.productoList}" var="p" itemValue="#{p.idProducto}" itemLabel="#{p.descripcion}"/>
+                                                         valueChangeListener="#{VentasBean.seleccionaProducto}"
+                                                         style="width: 250px">
+                                            <f:selectItem itemLabel="Seleccione un producto" itemValue="0"/>
+                                            <f:selectItems value="#{VentasBean.productoList}" var="p"
+                                                           itemValue="#{p.idProducto}" itemLabel="#{p.descripcion}"/>
                                             <p:ajax event="change"/>
                                         </p:selectOneMenu>
                                     </td>
                                     <td>
                                         <strong><h:outputText value="Existencia"/></strong><br/>
-                                        <h:inputText value="#{VentasBean.existencia}" size="6" maxlength="6" readonly="true"></h:inputText>
+                                        <h:inputText value="#{VentasBean.existencia}" size="6" maxlength="6"
+                                                     readonly="true"></h:inputText>
                                     </td>
                                     <td><strong><h:outputText value="Cantidad"/></strong><br/>
                                         <h:inputText id="cantidad" value="#{VentasBean.cantidad}" size="6" maxlength="6"
@@ -165,14 +220,14 @@
                                         <h:inputText id="precio" value="#{VentasBean.precio}" size="6" maxlength="6"
                                                      onkeypress="if (event.keyCode === 13) {
                                                                      changeFocus('form:add');
-                                                                 }"/>
+                                                                 }" onfocus="clearOnFocus(this)"/>
                                     </td>
                                     <td>
                                         <br/>
                                         <p:commandButton id="add" value="Agregar" action="#{VentasBean.addDetalle}"
                                                          onkeypress="if (event.keyCode === 13) {
                                                                          this.click();
-                                                                         return false;
+                                                                         changeFocus('form:codigoId');
                                                                      }"/>
                                     </td>
                                 </tr>
@@ -185,27 +240,32 @@
                         <fieldset>
                             <p:dataTable id="detalle" var="prod" value="#{VentasBean.venta.listaDetalle}"
                                          emptyMessage="No se han agregado productos"
-                                         scrollable="true" scrollHeight="200" >
+                                         scrollable="true" scrollHeight="200">
                                 <p:column headerText="ID" width="75">
-                                    <h:outputText value="#{prod.producto.idProducto}" />
+                                    <h:outputText value="#{prod.producto.codigo}"/>
                                 </p:column>
                                 <p:column headerText="Descripción" width="275">
-                                    <h:outputText value="#{prod.producto.descripcion}" />
+                                    <h:outputText value="#{prod.producto.descripcion}"/>
                                 </p:column>
                                 <p:column headerText="Precio unitario" width="75">
-                                   $ <h:outputText value="#{prod.precio}" />
+                                    <h:outputText value="#{prod.precio}">
+                                        <f:convertNumber type="currency" currencySymbol="$" locale="en_US"/>
+                                    </h:outputText>
                                 </p:column>
                                 <p:column headerText="Cantidad" width="75">
-                                    <h:outputText value="#{prod.cantidad}" />
+                                    <h:outputText value="#{prod.cantidad}"/>
                                 </p:column>
                                 <p:column headerText="Subtotal" width="75">
-                                   $ <h:outputText value="#{prod.subtotal}" />
+                                    <h:outputText value="#{prod.subtotal}">
+                                        <f:convertNumber type="currency" currencySymbol="$" locale="en_US"/>
+                                    </h:outputText>
                                 </p:column>
                                 <p:column width="50">
                                     <p:outputPanel>
                                         <p:commandButton action="#{VentasBean.borrarRenglon}" title="Borrar"
                                                          image="ui-icon-trash">
-                                            <f:setPropertyActionListener target="#{VentasBean.prodABorrar}" value="#{prod}" />
+                                            <f:setPropertyActionListener target="#{VentasBean.prodABorrar}"
+                                                                         value="#{prod}"/>
                                         </p:commandButton>
                                     </p:outputPanel>
                                 </p:column>
@@ -219,7 +279,11 @@
                     <td></td>
                     <td></td>
                     <td><strong><h:outputText value="Total"/></strong></td>
-                    <td>$ <h:outputText id="total" value="#{VentasBean.venta.totalGeneral}"/></td>
+                    <td>
+                        <h:outputText id="total" value="#{VentasBean.venta.totalGeneral}">
+                            <f:convertNumber type="currency" currencySymbol="$" locale="en_US"/>
+                        </h:outputText>
+                    </td>
                 </tr>
 
             </table>

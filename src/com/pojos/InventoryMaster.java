@@ -23,7 +23,7 @@ public class InventoryMaster implements Serializable {
     @JoinColumn(name = "ID_ALMACEN")
     private Almacen almacen;
     @Column(name = "CANTIDAD")
-    private int cantidad;
+    private float cantidad;
 
     public InventoryMaster(){
         almacen = new Almacen();
@@ -47,14 +47,14 @@ public class InventoryMaster implements Serializable {
     /**
      * @return the cantidad
      */
-    public int getCantidad() {
+    public float getCantidad() {
         return cantidad;
     }
 
     /**
      * @param cantidad the cantidad to set
      */
-    public void setCantidad(int cantidad) {
+    public void setCantidad(float cantidad) {
         this.cantidad = cantidad;
     }
 

@@ -5,14 +5,13 @@ import com.persistencia.AlmacenDAO;
 import com.persistencia.ComprasDAO;
 import com.persistencia.ProductoDAO;
 import com.persistencia.ProveedorDAO;
-import com.pojos.Almacen;
-import com.pojos.ConceptosExtra;
-import com.pojos.DetalleCompra;
-import com.pojos.MasterCompra;
-import com.pojos.Producto;
-import com.pojos.Proveedor;
+import com.pojos.*;
 import org.primefaces.event.SelectEvent;
 
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
+import javax.faces.event.ValueChangeEvent;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -20,13 +19,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
-import javax.faces.context.FacesContext;
-import javax.faces.event.ValueChangeEvent;
 
 /**
- *
  * @author antuan.yanez
  */
 @ManagedBean(name = "ComprasBean")
@@ -40,7 +34,7 @@ public class ComprasBean extends GenericBean implements Serializable {
     private List<Proveedor> listProveedores;
 
     private long id_producto;
-    private int cantidad;
+    private float cantidad;
     private float precio;
     private MasterCompra compra;
     private DetalleCompra prodABorrar;
@@ -64,10 +58,11 @@ public class ComprasBean extends GenericBean implements Serializable {
 
     final public void nuevo() {
         compra = new MasterCompra();
+        compra.getAlmacen().setIdAlmacen(getUsuario().getAlmacen().getIdAlmacen());
         listaProductos = productoDAO.getProductos();
-        try{
-        listaAlmacen = almacenDAO.getAlmacenes();
-        }catch(Exception e){
+        try {
+            listaAlmacen = almacenDAO.getAlmacenes();
+        } catch (Exception e) {
             listaAlmacen = new ArrayList<>();
         }
         precio = 0;
@@ -75,6 +70,17 @@ public class ComprasBean extends GenericBean implements Serializable {
         id_producto = 0L;
         compra.calculaTotales();
         conceptoExtra = new ConceptosExtra();
+    }
+
+    public synchronized void guardarCompraTotal() {
+        compra.setCredito(false);
+        guardarCompra();
+    }
+
+    public synchronized void guardarCompraCredito() {
+        compra.setCredito(true);
+        compra.setEstatus("P");
+        guardarCompra();
     }
 
     public synchronized void guardarCompra() {
@@ -125,17 +131,18 @@ public class ComprasBean extends GenericBean implements Serializable {
 
         DetalleCompra dv = new DetalleCompra();
         dv.setProducto(productoBusqueda);
-        boolean prodPresente = compra.getListDetalle().contains(dv);
-        if (!prodPresente) {
-            dv.setPrecio(precio);
-            dv.setCantidad(cantidad);
-            compra.getListDetalle().add(dv);
-        } else {
-            dv = compra.getListDetalle().get(compra.getListDetalle().indexOf(dv));
-            dv.setPrecio(precio);
-            cantidad = cantidad + dv.getCantidad();
-            dv.setCantidad(cantidad);
-        }
+//        boolean prodPresente = compra.getListDetalle().contains(dv);
+//        if (!prodPresente) {
+//            dv.setPrecio(precio);
+//            dv.setCantidad(cantidad);
+//            compra.getListDetalle().add(dv);
+//        } else {
+//            dv = compra.getListDetalle().get(compra.getListDetalle().indexOf(dv));
+        dv.setPrecio(precio);
+        cantidad = cantidad + dv.getCantidad();
+        dv.setCantidad(cantidad);
+        compra.getListDetalle().add(dv);
+//        }
         codigo = "";
         compra.calculaTotales();
         cantidad = 0;
@@ -172,7 +179,7 @@ public class ComprasBean extends GenericBean implements Serializable {
         compra.getListDetalle().remove(prodABorrar);
         compra.calculaTotales();
     }
-    
+
     public void borrarConceptoExtra() {
         compra.getListaExtra().remove(indexConceptoExtra);
         compra.calculaTotales();
@@ -199,6 +206,11 @@ public class ComprasBean extends GenericBean implements Serializable {
     public void ajaxDummy() {
 
     }
+
+    public void selectSomething() {
+        System.out.println("");
+    }
+
 
     /**
      * @return the listaProductos
@@ -238,14 +250,14 @@ public class ComprasBean extends GenericBean implements Serializable {
     /**
      * @return the cantidad
      */
-    public int getCantidad() {
+    public float getCantidad() {
         return cantidad;
     }
 
     /**
      * @param cantidad the cantidad to set
      */
-    public void setCantidad(int cantidad) {
+    public void setCantidad(float cantidad) {
         this.cantidad = cantidad;
     }
 

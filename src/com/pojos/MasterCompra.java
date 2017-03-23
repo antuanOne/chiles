@@ -48,6 +48,8 @@ public class MasterCompra implements Serializable {
     @OneToOne
     @JoinColumn(name = "ID_PROVEEDOR")
     private Proveedor proveedor;
+    @Column(name = "CREDITO")
+    private boolean credito;
     @OneToMany(mappedBy="compra",fetch=FetchType.EAGER)//,cascade = CascadeType.ALL)
     private List<DetalleCompra> listDetalle;
     @OneToMany(mappedBy="compra",fetch=FetchType.EAGER)//,cascade = CascadeType.ALL)
@@ -251,4 +253,11 @@ public class MasterCompra implements Serializable {
         this.listaExtra = listaExtra;
     }
 
+    public boolean isCredito() {
+        return credito;
+    }
+
+    public void setCredito(boolean credito) {
+        this.credito = credito;
+    }
 }
