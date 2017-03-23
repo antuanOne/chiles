@@ -15,7 +15,7 @@ import java.util.List;
 
 @ManagedBean(name = "CuentasPorPagarBean")
 @ViewScoped
-public class CuentasPorPagarBean extends GenericBean{
+public class CuentasPorPagarCompraBean extends GenericBean{
 
     private List<MasterCompra> comprasList;
     private MasterCompra compra;
@@ -33,7 +33,7 @@ public class CuentasPorPagarBean extends GenericBean{
     final private AlmacenDAO almacenDAO = new AlmacenDAO();
     final private ComprasDAO compraDAO = new ComprasDAO();
 
-    public CuentasPorPagarBean(){
+    public CuentasPorPagarCompraBean(){
         initialize();
     }
 

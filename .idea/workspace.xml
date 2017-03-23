@@ -6,37 +6,7 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c0d86b0d-9518-4fb8-b1f3-628bf154eb9c" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/controller/cuentasPorPagar/CuentasPorPagarBean.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/persistencia/CuentasPorPagarDAO.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/pojos/PagoCompra.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/pojos/TipoPago.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/persistencia/TipoPagoDAO.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/cuentasporpagar/cuentasporpagar.xhtml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/pojos/Cliente.java" afterPath="$PROJECT_DIR$/src/com/pojos/Cliente.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/controller/compras/ComprasBean.java" afterPath="$PROJECT_DIR$/src/com/controller/compras/ComprasBean.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/persistencia/ComprasDAO.java" afterPath="$PROJECT_DIR$/src/com/persistencia/ComprasDAO.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/controller/compras/ComprasDetalleBean.java" afterPath="$PROJECT_DIR$/src/com/controller/compras/ComprasDetalleBean.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/app/DatosHeaderBean.java" afterPath="$PROJECT_DIR$/src/com/app/DatosHeaderBean.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/pojos/DetalleCompra.java" afterPath="$PROJECT_DIR$/src/com/pojos/DetalleCompra.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/pojos/DetalleVenta.java" afterPath="$PROJECT_DIR$/src/com/pojos/DetalleVenta.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/persistencia/InventarioDAO.java" afterPath="$PROJECT_DIR$/src/com/persistencia/InventarioDAO.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/pojos/InventoryMaster.java" afterPath="$PROJECT_DIR$/src/com/pojos/InventoryMaster.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/pojos/MasterCompra.java" afterPath="$PROJECT_DIR$/src/com/pojos/MasterCompra.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/pojos/MasterVenta.java" afterPath="$PROJECT_DIR$/src/com/pojos/MasterVenta.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/Mojarra_2_2_1.xml" afterPath="$PROJECT_DIR$/.idea/libraries/Mojarra_2_2_1.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/controller/ventas/VentasBean.java" afterPath="$PROJECT_DIR$/src/com/controller/ventas/VentasBean.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/persistencia/VentasDAO.java" afterPath="$PROJECT_DIR$/src/com/persistencia/VentasDAO.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/controller/ventas/VentasDetalleBean.java" afterPath="$PROJECT_DIR$/src/com/controller/ventas/VentasDetalleBean.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/compras/compras.xhtml" afterPath="$PROJECT_DIR$/web/compras/compras.xhtml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/compras/comprasDetalle.xhtml" afterPath="$PROJECT_DIR$/web/compras/comprasDetalle.xhtml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/hibernate.cfg.xml" afterPath="$PROJECT_DIR$/src/hibernate.cfg.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/WEB-INF/templates/template.xhtml" afterPath="$PROJECT_DIR$/web/WEB-INF/templates/template.xhtml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/seguridad/usuario.xhtml" afterPath="$PROJECT_DIR$/web/seguridad/usuario.xhtml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/ventas/ventas.xhtml" afterPath="$PROJECT_DIR$/web/ventas/ventas.xhtml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/ventas/ventasDetalle.xhtml" afterPath="$PROJECT_DIR$/web/ventas/ventasDetalle.xhtml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-    </list>
+    <list default="true" id="c0d86b0d-9518-4fb8-b1f3-628bf154eb9c" name="Default" comment="" />
     <ignored path="chiles.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path="$PROJECT_DIR$/out/" />
@@ -116,16 +86,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="cuentasporpagar.xhtml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/web/cuentasporpagar/cuentasporpagar.xhtml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.3846154">
-              <caret line="12" column="45" selection-start-line="12" selection-start-column="45" selection-end-line="12" selection-end-column="45" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="comprasDetalle.xhtml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/web/compras/comprasDetalle.xhtml">
           <provider selected="true" editor-type-id="text-editor">
@@ -146,21 +106,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="cuentasxpagar.xhtml" pinned="false" current-in-tab="true">
+      <file leaf-file-name="cuentasxpagar.xhtml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/web/cuentasxpagar/cuentasxpagar.xhtml">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
+            <state vertical-scroll-proportion="-0.0">
               <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ventas.xhtml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/web/ventas/ventas.xhtml">
+      <file leaf-file-name="DatosHeaderBean.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/com/app/DatosHeaderBean.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.0">
-              <caret line="128" column="95" selection-start-line="128" selection-start-column="95" selection-end-line="128" selection-end-column="95" />
+            <state vertical-scroll-proportion="0.160221">
+              <caret line="20" column="0" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -362,24 +322,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="cuentasxpagar" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="chiles" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="chiles" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="web" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="cuentasporpagar" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -933,7 +875,7 @@
       <workItem from="1489466842706" duration="3093000" />
       <workItem from="1489640976436" duration="3804000" />
       <workItem from="1490158625494" duration="2668000" />
-      <workItem from="1490241463195" duration="6550000" />
+      <workItem from="1490241463195" duration="6841000" />
     </task>
     <task id="LOCAL-00001" summary="add out folder to ignore">
       <created>1486512223465</created>
@@ -945,7 +887,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="152914000" />
+    <option name="totallyTimeSpent" value="153205000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -958,7 +900,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1366" height="728" extended-state="0" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32924694" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -968,7 +910,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39404553" sideWeight="0.5045942" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32867134" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.7622378" sideWeight="0.4969743" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.7618214" sideWeight="0.4969743" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3905429" sideWeight="0.49540582" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4798599" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Persistence" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
@@ -981,7 +923,7 @@
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24961714" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.4921191" sideWeight="0.4969743" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4921191" sideWeight="0.4969743" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -1224,16 +1166,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-2.9454546">
           <caret line="88" column="86" selection-start-line="88" selection-start-column="86" selection-end-line="88" selection-end-column="86" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/app/DatosHeaderBean.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="25" column="0" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1481,14 +1413,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/web/cuentasporpagar/cuentasporpagar.xhtml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.3846154">
-          <caret line="12" column="45" selection-start-line="12" selection-start-column="45" selection-end-line="12" selection-end-column="45" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/web/compras/compras.xhtml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-4.730769">
@@ -1517,6 +1441,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/app/DatosHeaderBean.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.160221">
+          <caret line="20" column="0" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
           <folding />
         </state>
       </provider>
